@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Include config file.
+. ~/.config/lemonbar/config
+
+# Convert each "argument" into one string.
+string="$@"
+
+# Determine the duration of a popup based on length of the string.
+# Calculations based on the assumption of the width of 5 spaces being equal to one word, and a reading rate of 200 words per minute.
+stringWidth=$(($(txtw -f "${font}" -s ${fontSize} "${string}")))
+averageWordWidth=$(txtw -f "${font}" -s ${fontSize} "     ")
+approximateNumberOfWords=$((${stringWidth} / ${averageWordWidth}))
+
+popupDuration=$(((${approximateNumberOfWords} / 3) + 3))
+
+# Determine the width of a popup based on the length of the string.
+popupWidth=$((${stringWidth} * 2))
+
+# Get static dimensions based on the bar panels.
+popupHeight=${panelHeight}
+popupX=${panelX}
+popupY=$((${panelHeight} * 2))
+
+# Create a popup from whatever information is piped into this script.
+(echo "%{c}${string}"; sleep ${popupDuration}) | lemonbar -g ${popupWidth}x${popupHeight}+${popupX}+${popupY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${green}" -F "${background}" -d

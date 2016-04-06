@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Outside sources
+xres="$HOME/.Xresources"
+i3config="$HOME/.config/i3/config"
+
+# Fetch information from Xresources
+background=$(grep -i background ${xres} | tail -c 8)
+foreground=$(grep -i foreground ${xres} | tail -c 8)
+black=$(grep -i color0 ${xres} | tail -c 8)
+grey=$(grep -i color8 ${xres} | tail -c 8)
+red=$(grep -i color9 ${xres} | tail -c 8)
+green=$(grep -i color10 ${xres} | tail -c 8)
+yellow=$(grep -i color11 ${xres} | tail -c 8)
+blue=$(grep -i color12 ${xres} | tail -c 8)
+magenta=$(grep -i color13 ${xres} | tail -c 8)
+cyan=$(grep -i color14 ${xres} | tail -c 8)
+white=$(grep -i color15 ${xres} | tail -c 8)
+
+# Fetch information from i3 config
+gapSize=$(awk '/gaps inner/ {print $3}' ${i3config})
+
+# Workspace names -- independant from i3 config -- workspaces in i3 config should be named numbers 1-10.
+workspaceNames=(
+    ""               # 0 (No such workspace)
+    "Web Browser"    # 1
+    "Terminal"       # 2
+    "Text Editor"    # 3
+    "Unspecified"    # 4
+    "Unspecified"    # 5
+    "Unspecified"    # 6
+    "Unspecified"    # 7
+    "Unspecified"    # 8
+    "Messenger"      # 9
+    "Music Player"   # 10
+)
+
+# Fonts
+fontSize=10
+font="InputSans"
+iconFont="FontAwesome"
+
+separator="%{F$foreground}   |│|   "
+
+# Bar panel settings
+screenWidth=$(xrandr | awk '/Screen 0/ {print $8}')
+screenHeight=$(xrandr | awk '/Screen 0/ {print $10}' | tr -d ",")
+
+panelHeight=$((${gapSize} * 2))
+panelWidth=$((${screenWidth} - ${panelHeight}))
+panelX=${gapSize}
+topPanelY=${gapSize}
+bottomPanelY=$((${screenHeight} - ${panelHeight} - ${gapSize}))

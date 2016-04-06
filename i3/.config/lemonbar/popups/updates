@@ -1,0 +1,47 @@
+#!/bin/bash
+
+while true; do
+    # Fetch updates from both the official repositories and the AUR.
+    updatesOfficialText=$(checkupdates)
+    updatesAURText=$(pacaur -k)
+
+    updatesOfficialNumber=$(echo "${updatesOfficialText}" | wc -l)
+    updatesAURNumber=$(echo "${updatesAURText}" | wc -l)
+
+    # Set number of updates available to 0 if none exist because the wc command
+    # considers an empty string as one line
+    if [[ "${updatesOfficialText}" == "" ]]; then
+    	updatesOfficialNumber=0
+    fi
+
+    if [[ "${updatesAURText}" == "" ]]; then
+    	updatesAURNumber=0
+    fi
+
+    updatesTotal=$((${updatesOfficialNumber} + ${updatesAURNumber}))
+
+    # Display a gramatically correct message depending on how many updates are available
+    if [[ ${updatesTotal} -eq 1 && ${updatesOfficialNumber} -eq 1 ]]; then
+        updates="There is ${updatesOfficialNumber} official repo update available."
+    elif [[ ${updatesTotal} -eq 1 && ${updatesAURNumber} -eq 1 ]]; then
+        updates="There is ${updatesAURNumber} AUR update available."
+    elif [[ ${updatesTotal} -gt 1 && ${updatesAURNumber} -eq 0 ]]; then
+        updates="There are ${updatesOfficialNumber} official repo updates available."
+    elif [[ ${updatesTotal} -gt 1 && ${updatesOfficialNumber} -eq 0 ]]; then
+        updates="There are ${updatesAURNumber} AUR updates available."
+    elif [[ ${updatesTotal} -gt 1 && $updatesOfficialNumber -eq 1 && $updatesAURNumber -eq 1 ]]; then
+        updates="There is ${updatesOfficialNumber} official repo update, and ${updatesAURNumber} AUR update available."
+    elif [[ ${updatesTotal} -gt 1 && $updatesOfficialNumber -gt 1 && $updatesAURNumber -eq 1 ]]; then
+        updates="There are ${updatesOfficialNumber} official repo updates, ${updatesAURNumber} AUR update available."
+    elif [[ ${updatesTotal} -gt 1 && $updatesOfficialNumber -eq 1 && $updatesAURNumber -gt 1 ]]; then
+        updates="There is ${updatesOfficialNumber} official repo update, and ${updatesAURNumber} AUR updates available."
+    else
+        updates="There are ${updatesOfficialNumber} official repo updates, and ${updatesAURNumber} AUR updates available."
+    fi
+
+    # Throw a popup every 10 minutes if an update is available.
+    if [[ ${updatesTotal} -gt 0 && $(($(date "+%M") % 10)) -eq 0 ]]; then
+    	~/.config/lemonbar/popup-spawner ${updates}
+        sleep 60
+    fi
+done

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+file='/tmp/screenie.png'
+
+scrot -q 100 $file
+
+TYPE=$(file -b --mime-type "$file")
+xclip -selection clipboard -t "$TYPE" < "$file"
