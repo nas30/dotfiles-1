@@ -7,6 +7,7 @@ packages=(
     "vim"                       # Basic terminal text editor
     "atom-editor"               # Complex text editor
     "stow"                      # Dotfile management helper
+    "neofetch"                  # Display information about system
 
     # Shell tools
     "zsh"                       # Bash shell replacement

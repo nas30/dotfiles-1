@@ -49,31 +49,36 @@ volume(){
 
 # Fetch the current percentage of the battery's capacity.
 battery(){
-    batteryState=$(cat /sys/class/power_supply/BAT0/status)
-    batteryPower=$(cat /sys/class/power_supply/BAT0/capacity)
 
-    # Determine battery icon based on capacity.
-    if [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 20 ]]; then
-    	batteryIcon=""
-    elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 40 ]]; then
-    	batteryIcon=""
-    elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 60 ]]; then
-    	batteryIcon=""
-    elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 80 ]]; then
-        batteryIcon=""
-    elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 100 ]]; then
-        batteryIcon=""
-    else
-        batteryIcon=""
+    # Only display battery information if a battery exists.
+    if [[ -e /sys/class/power_supply/BAT0/capacity ]]; then
+        batteryState=$(cat /sys/class/power_supply/BAT0/status)
+        batteryPower=$(cat /sys/class/power_supply/BAT0/capacity)
+
+        # Determine battery icon based on capacity and state.
+        if [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 20 ]]; then
+        	batteryIcon=""
+        elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 40 ]]; then
+        	batteryIcon=""
+        elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 60 ]]; then
+        	batteryIcon=""
+        elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 80 ]]; then
+            batteryIcon=""
+        elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 100 ]]; then
+            batteryIcon=""
+        else
+            batteryIcon=""
+        fi
+
+        # Show text as red if the battery is below 20% capacity.
+        if [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 20 ]]; then
+            batteryColor=${red}
+        else
+            batteryColor=${foreground}
+        fi
+
+        echo "%{F$batteryColor}${batteryIcon} ${batteryPower}%${separator}"
     fi
-
-    if [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 20 ]]; then
-        batteryColor=${red}
-    else
-        batteryColor=${foreground}
-    fi
-
-    echo "%{F$batteryColor}${batteryIcon} ${batteryPower}%"
 }
 
 # Fetch the current date.
@@ -84,12 +89,12 @@ calendar(){
 
 # Fetch the current time.
 clock(){
-    clock=$(date "+%I:%M:%S %p")
+    clock=$(date "+%I:%M %p")
     echo "%{F$foreground} ${clock}"
 }
 
 # Pipe functions to the bar infinitely.
 while true; do
-	echo "%{c}$(network)${separator}$(volume)${separator}$(calendar)${separator}$(clock)"
+	echo "%{c}$(network)${separator}$(volume)${separator}$(battery)$(calendar)${separator}$(clock)"
 done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -F "${foreground}" -p -d  | \
     while true; do read line; eval $line; done &
