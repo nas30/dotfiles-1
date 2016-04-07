@@ -3,9 +3,12 @@
 # Array of packages to install.
 packages=(
     # Basic tools
+    "termite"                   # Terminal emulator
     "vim"                       # Basic terminal text editor
     "atom-editor"               # Complex text editor
-    "termite"                   # Terminal emulator
+    "stow"                      # Dotfile management helper.
+
+    # Internet
     "chromium"                  # Web browser
 
     # Window management
@@ -24,10 +27,11 @@ packages=(
     "cava-git"                  # Terminal music visualizer
 )
 
-buildroot="$(mktemp -d)"
-
 # Ask for user password only once.
 sudo -v
+
+# Increase the size of the /tmp directory to be able build the large array of packages.
+sudo mount -o remount,size=4G,noatime /tmp
 
 # Fetch Dave Reisner's key to be able to verify cower.
 echo "Fetching package keys."
@@ -39,6 +43,8 @@ sudo pacman -S --needed --noconfirm base-devel git
 
 # Build AUR helper.
 echo "Building AUR helper."
+
+buildroot="$(mktemp -d)"
 
 mkdir -p "$buildroot"
 cd "$buildroot" || exit 1
@@ -61,3 +67,7 @@ echo "Installing user specified packages."
 for ((i=0; i<=${#packages[@]}; i++)); do
     pacaur -S ${packages[i]}
 done
+
+# Remove any orphanated packages.
+echo "Removing orphanated packages."
+sudo pacman -Rns $(pacman -Qtdq)
