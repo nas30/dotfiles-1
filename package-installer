@@ -81,6 +81,9 @@ echo "Fetching package keys."
     # Refresh all keys.
     sudo pacman-key --refresh-keys
 
+    # Synchronize repositories.
+    pacaur -Sy
+
 # Make sure AUR dependencies are installed.
 echo "Checking AUR helper dependencies."
 sudo pacman -S --needed --noconfirm base-devel git
@@ -110,7 +113,7 @@ echo "Installing user specified packages."
 
 for ((i=0; i<=${#packages[@]}; i++)); do
     echo "Preparing to install ${packages[i]}."
-    pacaur --noedit --noconfirm -S ${packages[i]}
+    pacaur --noedit -S ${packages[i]}
 done
 
 # Change user shell.
