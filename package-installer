@@ -7,6 +7,8 @@ packages=(
     "neofetch"                          # Display information about system
     "txtw-git"                          # Returns text width in pixels
     "infinality-bundle"                 # Patches to improve font rendering
+    "jq"                                # Tool for parsing jquery.
+    "wget"                              # Tool for downloading files from the internet.
 
     # Editing tools
     "vim"                               # Basic terminal text editor
@@ -59,7 +61,7 @@ sudo -v
 # Install stowed config files.
 echo "Installing dotfiles."
 
-for ((i=0; i<=${#homeStows[@]}; i++)); do
+for ((i=0; i<=$((${#homeStows[@]} - 1)); i++)); do
     echo "Preparing to install ${homeStows[i]}."
     stow -d ~/dotfiles -t ~ ${homeStows[i]}
 done
@@ -111,7 +113,7 @@ rm -rf "$buildroot"
 # Install packages from array.
 echo "Installing user specified packages."
 
-for ((i=0; i<=${#packages[@]}; i++)); do
+for ((i=0; i<=$((${#packages[@]} - 1)); i++)); do
     echo "Preparing to install ${packages[i]}."
     pacaur --noedit -S ${packages[i]}
 done
