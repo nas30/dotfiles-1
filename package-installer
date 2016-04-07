@@ -6,7 +6,6 @@ packages=(
     "termite"                   # Terminal emulator
     "vim"                       # Basic terminal text editor
     "atom-editor"               # Complex text editor
-    "stow"                      # Dotfile management helper
     "neofetch"                  # Display information about system
 
     # Shell tools
@@ -20,6 +19,7 @@ packages=(
     "i3-gaps-git"               # Window manager
     "lemonbar-xft-git"          # Panel displayer
     "conky"                     # Panel helper
+    "txtw-git"                  # Returns text width in pixels
     "compton"                   # Compositer
 
     # Image realted
@@ -74,7 +74,7 @@ rm -rf "$buildroot"
 echo "Installing user specified packages."
 
 for ((i=0; i<=${#packages[@]}; i++)); do
-    echo "Installing ${packages[i]}."
+    echo "Preparing to install ${packages[i]}."
     pacaur --noedit -S ${packages[i]}
 done
 
