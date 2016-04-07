@@ -1,7 +1,7 @@
 # Package shortcuts
 alias pacinstall='pacaur --noedit -S'
 alias pacsearch='pacaur -Ss'
-alias pacsync='pacaur -Sy'
+alias pacrefresh='sudo pacman-key --refresh-keys; pacaur -Sy'
 alias pacupdate='pacaur --noedit --noconfirm -Syu'
 alias paccheck='checkupdates && pacaur -k'
 alias pacremove='pacaur -Rs'

@@ -2,52 +2,87 @@
 
 # Array of packages to install.
 packages=(
-    # Basic tools
-    "termite"                   # Terminal emulator
-    "vim"                       # Basic terminal text editor
-    "atom-editor"               # Complex text editor
-    "neofetch"                  # Display information about system
+    # Basic packages
+    "termite"                           # Terminal emulator
+    "neofetch"                          # Display information about system
+    "txtw-git"                          # Returns text width in pixels
+    "infinality-bundle"                 # Patches to improve font rendering
+
+    # Editing tools
+    "vim"                               # Basic terminal text editor
+    "atom-editor"                       # Complex text editor
+    "intellij-idea-community-edition"   # Java IDE
 
     # Shell tools
-    "zsh"                       # Bash shell replacement
-    "zsh-syntax-highlighting"   # Syntax highlighting plugin for zsh
+    "zsh"                               # Bash shell replacement
+    "zsh-syntax-highlighting"           # Syntax highlighting plugin for zsh
 
     # Internet
-    "chromium"                  # Web browser
+    "chromium"                          # Web browser
 
     # Window management
-    "i3-gaps-git"               # Window manager
-    "lemonbar-xft-git"          # Panel displayer
-    "conky"                     # Panel helper
-    "txtw-git"                  # Returns text width in pixels
-    "compton"                   # Compositer
+    "i3-gaps-git"                       # Window manager
+    "lemonbar-xft-git"                  # Panel displayer
+    "conky"                             # Panel helper
+    "compton"                           # Compositer
+    "rofi"                              # Program run menu
 
     # Image realted
-    "feh"                       # Image viewer / wallpaper setter
-    "scrot"                     # Screenshot tool
-    "imagemagick"               # Terminal image manipulation
+    "feh"                               # Image viewer / wallpaper setter
+    "scrot"                             # Screenshot tool
+    "imagemagick"                       # Terminal image manipulation
 
     # Music related
-    "spotify"                   # Music streaming service
-    "playerctl"                 # Music control tool
-    "cava-git"                  # Terminal music visualizer
-    "ponymix"                   # Volume control tool
+    "spotify"                           # Music streaming service
+    "playerctl"                         # Music control tool
+    "cava-git"                          # Terminal music visualizer
+    "ponymix"                           # Volume control tool
+)
+
+homeStows=(
+    "bin"
+    "cava"
+    "compton"
+    "i3"
+    "neofetch"
+    "pacaur"
+    "qutebrowser"
+    "ranger"
+    "termite"
+    "wallpaper"
+    "x"
 )
 
 # Ask for user password only once.
 sudo -v
 
+# Install stowed config files.
+echo "Installing dotfiles."
+
+for ((i=0; i<=${#homeStows[@]}; i++)); do
+    echo "Preparing to install ${homeStows[i]}."
+    stow -d ~/dotfiles -t ~ ${homeStows[i]}
+done
+
 # Increase the size of the /tmp directory to be able build the large array of packages.
 sudo mount -o remount,size=4G,noatime /tmp
 
-# Fetch Dave Reisner's key to be able to verify cower.
+# Fetch keys needed to verify cower and infinality.
 echo "Fetching package keys."
 
-gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 487EACC08557AD082088DABA1EB2638FF56C0C53
+    # Cower key.
+    gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 487EACC08557AD082088DABA1EB2638FF56C0C53
+
+    # Infinality key.
+    sudo pacman-key -r 962DDE58
+    sudo pacman-key -f 962DDE58
+    sudo pacman-key --lsign-key 962DDE58
+
+    # Refresh all keys.
+    sudo pacman-key --refresh-keys
 
 # Make sure AUR dependencies are installed.
 echo "Checking AUR helper dependencies."
-
 sudo pacman -S --needed --noconfirm base-devel git
 
 # Build AUR helper.
@@ -80,10 +115,8 @@ done
 
 # Change user shell.
 echo "Changing user shell."
-
 sudo chsh -s /bin/zsh $(whoami)
 
 # Remove any orphanated packages.
 echo "Removing orphanated packages."
-
 sudo pacman -Rns $(pacman -Qtdq)
