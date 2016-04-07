@@ -6,7 +6,11 @@ packages=(
     "termite"                   # Terminal emulator
     "vim"                       # Basic terminal text editor
     "atom-editor"               # Complex text editor
-    "stow"                      # Dotfile management helper.
+    "stow"                      # Dotfile management helper
+
+    # Shell tools
+    "zsh"                       # Bash shell replacement
+    "zsh-syntax-highlighting"   # Syntax highlighting plugin for zsh
 
     # Internet
     "chromium"                  # Web browser
@@ -15,6 +19,7 @@ packages=(
     "i3-gaps-git"               # Window manager
     "lemonbar-xft-git"          # Panel displayer
     "conky"                     # Panel helper
+    "compton"                   # Compositer
 
     # Image realted
     "feh"                       # Image viewer / wallpaper setter
@@ -25,6 +30,7 @@ packages=(
     "spotify"                   # Music streaming service
     "playerctl"                 # Music control tool
     "cava-git"                  # Terminal music visualizer
+    "ponymix"                   # Volume control tool
 )
 
 # Ask for user password only once.
@@ -35,10 +41,12 @@ sudo mount -o remount,size=4G,noatime /tmp
 
 # Fetch Dave Reisner's key to be able to verify cower.
 echo "Fetching package keys."
+
 gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 487EACC08557AD082088DABA1EB2638FF56C0C53
 
 # Make sure AUR dependencies are installed.
 echo "Checking AUR helper dependencies."
+
 sudo pacman -S --needed --noconfirm base-devel git
 
 # Build AUR helper.
@@ -65,9 +73,16 @@ rm -rf "$buildroot"
 echo "Installing user specified packages."
 
 for ((i=0; i<=${#packages[@]}; i++)); do
-    pacaur -S ${packages[i]}
+    echo "Installing ${packages[i]}."
+    pacaur --noedit -S ${packages[i]}
 done
+
+# Change user shell.
+echo "Changing user shell."
+
+sudo chsh -s /bin/zsh $(whoami)
 
 # Remove any orphanated packages.
 echo "Removing orphanated packages."
+
 sudo pacman -Rns $(pacman -Qtdq)
