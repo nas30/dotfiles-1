@@ -62,7 +62,7 @@ sudo -v
 echo "Installing dotfiles."
 
 for ((i=0; i<=$((${#homeStows[@]} - 1)); i++)); do
-    echo "Preparing to install ${homeStows[i]}."
+    echo "Dotfiles for ${homeStows[i]} installed."
     stow -d ~/dotfiles -t ~ ${homeStows[i]}
 done
 
@@ -114,7 +114,6 @@ rm -rf "$buildroot"
 echo "Installing user specified packages."
 
 for ((i=0; i<=$((${#packages[@]} - 1)); i++)); do
-    echo "Preparing to install ${packages[i]}."
     pacaur --noedit -S ${packages[i]}
 done
 

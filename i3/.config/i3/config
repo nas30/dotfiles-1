@@ -27,7 +27,7 @@ set $accent #fb4934
 hide_edge_borders none
 new_window pixel 3
 new_float pixel 3
-gaps inner 12
+gaps inner 16
 gaps outer 0
 
 # Window Colors

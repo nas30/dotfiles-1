@@ -2,7 +2,7 @@ alignment top_middle
 background no
 
 # Minimum size should be 1, then the size of your i3 gaps * 2.5
-minimum_size 1 30
+minimum_size 1 40
 
 border_width 0
 own_window yes
