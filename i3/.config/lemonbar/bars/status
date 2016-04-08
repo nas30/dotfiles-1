@@ -25,6 +25,27 @@ network(){
     echo "%{F$networkColor} ${network}"
 }
 
+# Fetch current dropbox sync status.
+dropbox(){
+    dropboxInfo=$(dropbox-cli status)
+
+    if [[ $dropboxInfo == "Connecting..." || $dropboxInfo == "Starting..." ]]; then
+        dropbox="Connecting"
+        dropboxColor=${green}
+    elif [[ $(echo $dropboxInfo | grep "Syncing") != "" || $(echo $dropboxInfo | grep "Downloading") != "" || $(echo $dropboxInfo | grep "Indexing") != "" ]]; then
+        dropbox="Syncing"
+        dropboxColor=${green}
+    elif [[ $dropboxInfo == "Dropbox isn't running!" ]]; then
+        dropbox="Offline"
+        dropboxColor=${red}
+    else
+        dropbox="Idle"
+        dropboxColor=${foreground}
+    fi
+
+    echo "%{F$dropboxColor} ${dropbox}"
+}
+
 # Fetch current volume state and mute state.
 volume(){
     volumeState=$(ponymix get-volume)
@@ -58,23 +79,22 @@ battery(){
         # Determine battery icon based on capacity and state.
         if [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 20 ]]; then
         	batteryIcon=""
+            batteryColor=${red}
         elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 40 ]]; then
         	batteryIcon=""
+            batteryColor=${foreground}
         elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 60 ]]; then
         	batteryIcon=""
+            batteryColor=${foreground}
         elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 80 ]]; then
             batteryIcon=""
+            batteryColor=${foreground}
         elif [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 100 ]]; then
             batteryIcon=""
+            batteryColor=${foreground}
         else
             batteryIcon=""
-        fi
-
-        # Show text as red if the battery is below 20% capacity.
-        if [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 20 ]]; then
-            batteryColor=${red}
-        else
-            batteryColor=${foreground}
+            batteryColor=${green}
         fi
 
         echo "%{F$batteryColor}${batteryIcon} ${batteryPower}%${separator}"
@@ -95,6 +115,6 @@ clock(){
 
 # Pipe functions to the bar infinitely.
 while true; do
-	echo "%{c}$(network)${separator}$(volume)${separator}$(battery)$(calendar)${separator}$(clock)"
+	echo "%{c}$(network)${separator}$(dropbox)${separator}$(volume)${separator}$(battery)$(calendar)${separator}$(clock)"
 done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -F "${foreground}" -p -d  | \
     while true; do read line; eval $line; done &

@@ -23,6 +23,7 @@ packages=(
     # Internet
     "chromium"                          # Web browser.
     "dropbox"                           # Cloud storage.
+    "dropbox-cli"                       # Terminal interface for dropbox.
 
     # Window management
     "i3-gaps-git"                       # Window manager.
