@@ -3,42 +3,44 @@
 # Array of packages to install.
 packages=(
     # Basic packages
-    "termite"                           # Terminal emulator
-    "neofetch"                          # Display information about system
-    "txtw-git"                          # Returns text width in pixels
-    "infinality-bundle"                 # Patches to improve font rendering
+    "termite"                           # Terminal emulator.
+    "neofetch"                          # Display information about system.
+    "txtw-git"                          # Returns text width in pixels.
+    "infinality-bundle"                 # Patches to improve font rendering.
     "jq"                                # Tool for parsing jquery.
     "wget"                              # Tool for downloading files from the internet.
+    "unzip"                             # Tool for extracting zip archives.
 
     # Editing tools
-    "vim"                               # Basic terminal text editor
-    "atom-editor"                       # Complex text editor
-    "intellij-idea-community-edition"   # Java IDE
+    "vim"                               # Basic terminal text editor.
+    "atom-editor"                       # Complex text editor.
+    "intellij-idea-community-edition"   # Java IDE.
 
     # Shell tools
-    "zsh"                               # Bash shell replacement
-    "zsh-syntax-highlighting"           # Syntax highlighting plugin for zsh
+    "zsh"                               # Bash shell replacement.
+    "zsh-syntax-highlighting"           # Syntax highlighting plugin for zsh.
 
     # Internet
-    "chromium"                          # Web browser
+    "chromium"                          # Web browser.
+    "dropbox"                           # Cloud storage.
 
     # Window management
-    "i3-gaps-git"                       # Window manager
-    "lemonbar-xft-git"                  # Panel displayer
-    "conky"                             # Panel helper
-    "compton"                           # Compositer
-    "rofi"                              # Program run menu
+    "i3-gaps-git"                       # Window manager.
+    "lemonbar-xft-git"                  # Panel displayer.
+    "conky"                             # Panel helper.
+    "compton"                           # Compositer.
+    "rofi"                              # Program run menu.
 
     # Image realted
-    "feh"                               # Image viewer / wallpaper setter
-    "scrot"                             # Screenshot tool
-    "imagemagick"                       # Terminal image manipulation
+    "feh"                               # Image viewer / wallpaper setter.
+    "scrot"                             # Screenshot tool.
+    "imagemagick"                       # Terminal image manipulation.
 
     # Music related
-    "spotify"                           # Music streaming service
-    "playerctl"                         # Music control tool
-    "cava-git"                          # Terminal music visualizer
-    "ponymix"                           # Volume control tool
+    "spotify"                           # Music streaming service.
+    "playerctl"                         # Music control tool.
+    "cava-git"                          # Terminal music visualizer.
+    "ponymix"                           # Volume control tool.
 )
 
 homeStows=(
@@ -62,9 +64,15 @@ sudo -v
 echo "Installing dotfiles."
 
 for ((i=0; i<=$((${#homeStows[@]} - 1)); i++)); do
-    echo "Dotfiles for ${homeStows[i]} installed."
     stow -d ~/dotfiles -t ~ ${homeStows[i]}
+    echo "Dotfiles for ${homeStows[i]} installed."
 done
+
+    # Install stowed config files with special conditions.
+    # Pacman
+    sudo rm /etc/pacman.conf
+    sudo stow -d ~/dotfiles -t / pacman--root
+    echo "Dotfiles for pacman installed."
 
 # Increase the size of the /tmp directory to be able build the large array of packages.
 sudo mount -o remount,size=4G,noatime /tmp
