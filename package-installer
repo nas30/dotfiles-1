@@ -10,6 +10,7 @@ packages=(
     "jq"                                # Tool for parsing jquery.
     "wget"                              # Tool for downloading files from the internet.
     "unzip"                             # Tool for extracting zip archives.
+    "xclip"                             # Allows manipulation of clipboard from terminal.
 
     # Editing tools
     "vim"                               # Basic terminal text editor.
@@ -62,6 +63,10 @@ homeStows=(
 # Ask for user password only once.
 sudo -v
 
+# Make sure script dependencies are installed.
+echo "Checking dependencies."
+sudo pacman -S --needed --noconfirm base-devel git stow
+
 # Install stowed config files.
 echo "Installing dotfiles."
 
@@ -95,10 +100,6 @@ echo "Fetching package keys."
 
     # Synchronize repositories.
     pacaur -Sy
-
-# Make sure AUR dependencies are installed.
-echo "Checking AUR helper dependencies."
-sudo pacman -S --needed --noconfirm base-devel git
 
 # Build AUR helper.
 echo "Building AUR helper."
