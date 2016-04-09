@@ -13,7 +13,7 @@ network(){
         networkColor=${green}
     elif [[ ${networkState} != "" ]]; then
     	network="Online"
-        networkColor=${green}
+        networkColor=${foreground}
     else
         network="Offline"
         networkColor=${red}
@@ -28,15 +28,15 @@ dropbox(){
 
     if [[ $dropboxInfo == "Connecting..." || $dropboxInfo == "Starting..." ]]; then
         dropbox="Connecting"
-        dropboxColor=${green}
+        dropboxColor=${foreground}
     elif [[ $(echo $dropboxInfo | grep "Syncing") != "" || $(echo $dropboxInfo | grep "Downloading") != "" || $(echo $dropboxInfo | grep "Indexing") != "" ]]; then
         dropbox="Syncing"
         dropboxColor=${green}
     elif [[ $dropboxInfo == "Dropbox isn't running!" ]]; then
-        dropbox="Offline"
+        dropbox="Not Running"
         dropboxColor=${red}
     else
-        dropbox="Idle"
+        dropbox="Up To Date"
         dropboxColor=${foreground}
     fi
 

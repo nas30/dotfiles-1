@@ -35,5 +35,5 @@ shell sudo rm -R
 shell sudo vim lightdm-webkit-greeter.conf
 shell sudo vim lightdm.conf
 copy
-delete
 paste
+delete

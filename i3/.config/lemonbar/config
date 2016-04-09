@@ -24,16 +24,16 @@ gapSize=$(awk '/gaps inner/ {print $3}' ${i3config})
 # Independant from i3 config -- workspaces in i3 config should be named 1-10.
 workspaceNames=(
     ""               # 0 (No such workspace)
-    "Browser"        # 1
+    "Web Browser"    # 1
     "Terminal"       # 2
-    "Editor"         # 3
-    "None"           # 4
-    "None"           # 5
-    "None"           # 6
-    "None"           # 7
-    "None"           # 8
-    "None"           # 9
-    "Player"         # 10
+    "Text Editor"    # 3
+    "Unspecified"    # 4
+    "Unspecified"    # 5
+    "Unspecified"    # 6
+    "Unspecified"    # 7
+    "Unspecified"    # 8
+    "Unspecified"    # 9
+    "Music Player"   # 10
 )
 
 # Choose which blocks are displayed on the bar.
