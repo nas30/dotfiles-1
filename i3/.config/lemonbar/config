@@ -1,21 +1,20 @@
 #!/bin/bash
 
 # Outside sources
-xres="$HOME/.Xresources"
 i3config="$HOME/.config/i3/config"
 
-# Fetch information from Xresources
-background=$(grep -i background ${xres} | tail -c 8)
-foreground=$(grep -i foreground ${xres} | tail -c 8)
-black=$(grep -i color0 ${xres} | tail -c 8)
-grey=$(grep -i color8 ${xres} | tail -c 8)
-red=$(grep -i color9 ${xres} | tail -c 8)
-green=$(grep -i color10 ${xres} | tail -c 8)
-yellow=$(grep -i color11 ${xres} | tail -c 8)
-blue=$(grep -i color12 ${xres} | tail -c 8)
-magenta=$(grep -i color13 ${xres} | tail -c 8)
-cyan=$(grep -i color14 ${xres} | tail -c 8)
-white=$(grep -i color15 ${xres} | tail -c 8)
+# Fetch information from the X resource database.
+background=$(xrdb -query | grep -i background | tail -c 8)
+foreground=$(xrdb -query | grep -i foreground | tail -c 8)
+black=$(xrdb -query | grep -i color0 | tail -c 8)
+grey=$(xrdb -query | grep -i color8 | tail -c 8)
+red=$(xrdb -query | grep -i color9 | tail -c 8)
+green=$(xrdb -query | grep -i color10 | tail -c 8)
+yellow=$(xrdb -query | grep -i color11 | tail -c 8)
+blue=$(xrdb -query | grep -i color12 | tail -c 8)
+magenta=$(xrdb -query | grep -i color13 | tail -c 8)
+cyan=$(xrdb -query | grep -i color14 | tail -c 8)
+white=$(xrdb -query | grep -i color15 | tail -c 8)
 
 # Fetch information from i3 config
 gapSize=$(awk '/gaps inner/ {print $3}' ${i3config})
