@@ -20,7 +20,8 @@ white=$(grep -i color15 ${xres} | tail -c 8)
 # Fetch information from i3 config
 gapSize=$(awk '/gaps inner/ {print $3}' ${i3config})
 
-# Workspace names -- independant from i3 config -- workspaces in i3 config should be named numbers 1-10.
+# Choose the names for the workspaces that are displayed on the bar.
+# Independant from i3 config -- workspaces in i3 config should be named 1-10.
 workspaceNames=(
     ""               # 0 (No such workspace)
     "Browser"        # 1
@@ -33,6 +34,16 @@ workspaceNames=(
     "None"           # 8
     "None"           # 9
     "Player"         # 10
+)
+
+# Choose which blocks are displayed on the bar.
+selectedBlocks=(
+    "network"
+    "dropbox"
+    "volume"
+#   "battery"
+    "calendar"
+    "clock"
 )
 
 # Fonts

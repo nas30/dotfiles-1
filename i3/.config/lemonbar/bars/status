@@ -10,16 +10,13 @@ network(){
 
     if [[ ${networkState} != "" && ${networkSSID} != "" ]]; then
         network=${networkSSID}
+        networkColor=${green}
     elif [[ ${networkState} != "" ]]; then
     	network="Online"
+        networkColor=${green}
     else
         network="Offline"
-    fi
-
-    if [[ ${networkState} == "" ]]; then
         networkColor=${red}
-    else
-        networkColor=${foreground}
     fi
 
     echo "%{F$networkColor} ${network}"
@@ -70,9 +67,8 @@ volume(){
 
 # Fetch the current percentage of the battery's capacity.
 battery(){
+    if [[ -d /sys/class/power_supply/BAT0 ]]; then
 
-    # Only display battery information if a battery exists.
-    if [[ -e /sys/class/power_supply/BAT0/capacity ]]; then
         batteryState=$(cat /sys/class/power_supply/BAT0/status)
         batteryPower=$(cat /sys/class/power_supply/BAT0/capacity)
 
@@ -96,8 +92,9 @@ battery(){
             batteryIcon=""
             batteryColor=${green}
         fi
-
-        echo "%{F$batteryColor}${batteryIcon} ${batteryPower}%${separator}"
+        echo "%{F$batteryColor}${batteryIcon} ${batteryPower}%"
+    else
+        echo "%{F$red}No Battery Detected"
     fi
 }
 
@@ -113,8 +110,25 @@ clock(){
     echo "%{F$foreground} ${clock}"
 }
 
+# Format selected blocks for piping into bar.
+status(){
+    status=""
+    currentSeparator="${separator}"
+    numberOfBlocks=$((${#selectedBlocks[@]} - 1))
+
+    for ((i=0; i<=${numberOfBlocks}; i++)); do
+        if [[ ${i} -eq ${numberOfBlocks} ]]; then
+            currentSeparator=""
+        fi
+
+        status+="$(${selectedBlocks[i]})${currentSeparator}"
+    done
+
+    echo "${status}"
+}
+
 # Pipe functions to the bar infinitely.
 while true; do
-	echo "%{c}$(network)${separator}$(dropbox)${separator}$(volume)${separator}$(battery)$(calendar)${separator}$(clock)"
+	echo "%{c}$(status)"
 done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -F "${foreground}" -p -d  | \
     while true; do read line; eval $line; done &
