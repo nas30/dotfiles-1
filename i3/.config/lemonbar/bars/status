@@ -3,17 +3,22 @@
 # Include config file.
 . ~/.config/lemonbar/config
 
-# Fetch current network connection state and SSID.
+# Fetch current network connection state -- and SSID, if available.
 network(){
     networkState=$(grep -R "up" /sys/class/net/*/operstate)
+    # Using google nameserver is a bad check, fix this later.
+    internetState=$(ping -c 1 -w 1 8.8.8.8 > /dev/null && echo 1 || echo 0)
     networkSSID=$(iwgetid -r)
 
-    if [[ ${networkState} != "" && ${networkSSID} != "" ]]; then
+    if [[ ${networkState} != "" && ${internetState} -eq 1 && ${networkSSID} != "" ]]; then
         network=${networkSSID}
-        networkColor=${green}
-    elif [[ ${networkState} != "" ]]; then
+        networkColor=${foreground}
+    elif [[ ${networkState} != "" && ${internetState} -eq 1 ]]; then
     	network="Online"
         networkColor=${foreground}
+    elif [[ $networkState != "" && ${internetState} -eq 0 ]]; then
+        network="LAN Only"
+        networkColor=${yellow}
     else
         network="Offline"
         networkColor=${red}
@@ -26,15 +31,15 @@ network(){
 dropbox(){
     dropboxInfo=$(dropbox-cli status)
 
-    if [[ $dropboxInfo == "Connecting..." || $dropboxInfo == "Starting..." ]]; then
-        dropbox="Connecting"
+    if [[ $dropboxInfo == "Dropbox isn't running!" ]]; then
+        dropbox="Not Running"
+        dropboxColor=${red}
+    elif [[ $dropboxInfo == "Connecting..." || $dropboxInfo == "Starting..." ]]; then
+        dropbox="Attempting Connection"
         dropboxColor=${foreground}
     elif [[ $(echo $dropboxInfo | grep "Syncing") != "" || $(echo $dropboxInfo | grep "Downloading") != "" || $(echo $dropboxInfo | grep "Indexing") != "" ]]; then
         dropbox="Syncing"
         dropboxColor=${green}
-    elif [[ $dropboxInfo == "Dropbox isn't running!" ]]; then
-        dropbox="Not Running"
-        dropboxColor=${red}
     else
         dropbox="Up To Date"
         dropboxColor=${foreground}
@@ -47,7 +52,7 @@ dropbox(){
 volume(){
     volumeState=$(ponymix get-volume)
 
-    # level-based icon
+    # Determine volume icon depending on the level of volume.
     if [[ ${volumeState} -eq 0 ]]; then
     	volumeIcon=""
     elif [[ ${volumeState} -le 50 ]]; then
@@ -112,7 +117,6 @@ clock(){
 
 # Format selected blocks for piping into bar.
 status(){
-    status=""
     currentSeparator="${separator}"
     numberOfBlocks=$((${#selectedBlocks[@]} - 1))
 

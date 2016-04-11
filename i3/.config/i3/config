@@ -41,11 +41,14 @@ client.urgent           $background	$background $accent		$foreground
 # MEDIA BINDS
 ###########################################################
 
-bindsym Control+Shift+F10 exec ponymix toggle
-bindsym Control+Shift+F11 exec ponymix unmute; exec ponymix decrease 5
-bindsym Control+Shift+F12 exec ponymix unmute; exec ponymix increase 5
+bindsym XF86AudioMute exec ponymix toggle
+bindsym XF86AudioLowerVolume exec ponymix unmute; exec ponymix decrease 5
+bindsym XF86AudioRaiseVolume exec ponymix unmute; exec ponymix increase 5
 
-bindsym Print exec screenie
+bindsym Print exec ~/bin/screenie -f -c
+bindsym Shift+Print exec ~/bin/screenie -s -c
+bindsym Control+Print exec ~/bin/screenie -f -u
+bindsym Control+Shift+Print exec ~/bin/screenie -s -u
 
 ###########################################################
 # NAVIGATION BINDS

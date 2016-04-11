@@ -3,8 +3,26 @@
 # Include config file.
 . ~/.config/lemonbar/config
 
-# Convert each "argument" into one string.
-string="$@"
+# Determine if a color has been specified by the popup command.
+case $1 in
+    %black)     popupBackground=$background; popupForeground=$foreground ;;
+    %grey)      popupBackground=$grey; popupForeground=$background ;;
+    %red)       popupBackground=$red; popupForeground=$background ;;
+    %green)     popupBackground=$green; popupForeground=$background ;;
+    %yellow)    popupBackground=$yellow; popupForeground=$background ;;
+    %blue)      popupBackground=$blue; popupForeground=$background ;;
+    %magenta)   popupBackground=$magenta; popupForeground=$background ;;
+    %cyan)      popupBackground=$cyan; popupForeground=$background ;;
+    %white)     popupBackground=$foreground; popupForeground=$background ;;
+    *)          popupBackground=$background; popupForeground=$foreground ;;  # Default case
+esac
+
+# Select the appropriate string based on if a color has been specified.
+if [[ $1 == "%black" || $1 == "%grey" || $1 == "%red" || $1 == "%green" || $1 == "%yellow" || $1 == "%blue" || $1 == "%magenta" || $1 == "%cyan" || $1 == "%white" ]]; then
+    string=${@:2}
+else
+    string=$@
+fi
 
 # Determine the duration of a popup based on length of the string.
 # Calculations based on the assumption of the width of 5 spaces being equal to one word, and a reading rate of 200 words per minute.
@@ -23,4 +41,4 @@ popupX=${panelX}
 popupY=$((${panelHeight} * 2))
 
 # Create a popup from whatever information is piped into this script.
-(echo "%{c}${string}"; sleep ${popupDuration}) | lemonbar -g ${popupWidth}x${popupHeight}+${popupX}+${popupY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${green}" -F "${background}" -d
+(echo "%{c}${string}"; sleep ${popupDuration}) | lemonbar -g ${popupWidth}x${popupHeight}+${popupX}+${popupY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${popupBackground}" -F "${popupForeground}" -d

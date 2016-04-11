@@ -3,22 +3,19 @@
 while true; do
     localDir=(~/.wallpaper/*)
 
-    SCREEN_INFO=$(xrandr | grep 'Screen 0')
-    SCREEN_WIDTH=$(echo ${SCREEN_INFO} | awk '{print $8}')
-    SCREEN_HEIGHT=$(echo ${SCREEN_INFO} | awk '{print $10}' | tr -d ",")
-    IMAGE_INFO=""
-    IMAGE_WIDTH=""
-    IMAGE_HEIGHT=""
+    screenInfo=$(xrandr | grep 'Screen 0')
+    screenWidth=$(echo ${screenInfo} | awk '{print $8}')
+    screenHeight=$(echo ${screenInfo} | awk '{print $10}' | tr -d ",")
 
-    NETWORK_CONNECTED=$(grep -R 'up' /sys/class/net/*/operstate)
-    ACTIVE_WORKSPACE=$(i3-msg -t get_workspaces | jq '.[] | select(.focused).name')
-    WINDOWS_OPEN=$(i3-msg -t get_tree | jq '(.nodes[].nodes[].nodes[] | select(.type=="workspace") | select(.name=='${ACTIVE_WORKSPACE}') | .nodes | length) // 0')
+    internetState=$(ping -c 1 -w 1 8.8.8.8 > /dev/null && echo 1 || echo 0)
+    activeWorkspace=$(i3-msg -t get_workspaces | jq '.[] | select(.focused).name')
+    windowsOpen=$(i3-msg -t get_tree | jq '(.nodes[].nodes[].nodes[] | select(.type=="workspace") | select(.name=='${activeWorkspace}') | .nodes | length) // 0')
 
     # Fetch a wallpaper if none exists
     if [[ ! -e /tmp/bgnormal.jpg ]]; then
 
         # Fetch a random wallpaper from reddit if connected to the internet
-        if [[ "${NETWORK_CONNECTED}" != "" ]]; then
+        if [[ ${internetState} -eq 1 ]]; then
             randomSub=$(echo $[ 1 + $[ RANDOM % 4 ]])
 
             if [[ ${randomSub} -eq 1 ]]; then
@@ -33,12 +30,12 @@ while true; do
 
             wget -O - http://www.reddit.com/r/${subName} | grep -Eo 'http://i.imgur.com[^&]+jpg' | shuf -n 1 | xargs wget -O /tmp/bgnormal.jpg
 
-            IMAGE_INFO=$(identify /tmp/bgnormal.jpg | awk '{print $3}' | tr "x" " ")
-            IMAGE_WIDTH=$(echo ${IMAGE_INFO} | awk '{print $1}')
-            IMAGE_HEIGHT=$(echo ${IMAGE_INFO} | awk '{print $2}')
+            imageInfo=$(identify /tmp/bgnormal.jpg | awk '{print $3}' | tr "x" " ")
+            imageWidth=$(echo ${imageInfo} | awk '{print $1}')
+            imageHeight=$(echo ${imageInfo} | awk '{print $2}')
 
             # Fetch a different wallpaper if the current one is smaller than the main screen's resolution
-            if [[ ${IMAGE_WIDTH} -lt ${SCREEN_WIDTH} || ${IMAGE_HEIGHT} -lt ${SCREEN_HEIGHT} ]]; then
+            if [[ ${imageWidth} -lt ${screenWidth} || ${imageHeight} -lt ${screenHeight} ]]; then
                 rm /tmp/bgnormal.jpg /tmp/bgblurred.jpg
             else
                 echo "/r/${subName}" > /tmp/bgsource
@@ -54,11 +51,11 @@ while true; do
     # Created a blurred version of the wallpaper if one does not exist, then popup a notification showing where the wallpaper originated.
     if [[ ! -e /tmp/bgblurred.jpg && -e /tmp/bgnormal.jpg ]]; then
         convert /tmp/bgnormal.jpg -channel RGBA -blur 0x15 -alpha off /tmp/bgblurred.jpg
-        ~/.config/lemonbar/popup-spawner $(echo "Wallpaper from $(cat /tmp/bgsource).")
+        ~/.config/lemonbar/popup-spawner $(echo "Wallpaper loaded from $(cat /tmp/bgsource).")
     fi
 
     # If a window is open, display the blurred version of the wallpaper
-    if [ ${WINDOWS_OPEN} -eq 0 ]; then
+    if [ ${windowsOpen} -eq 0 ]; then
     	feh --bg-fill /tmp/bgnormal.jpg
     else
     	feh --bg-fill /tmp/bgblurred.jpg

@@ -19,8 +19,8 @@ white=$(xrdb -query | grep -i color15 | tail -c 8)
 # Fetch information from i3 config
 gapSize=$(awk '/gaps inner/ {print $3}' ${i3config})
 
-# Choose the names for the workspaces that are displayed on the bar.
-# Independant from i3 config -- workspaces in i3 config should be named 1-10.
+# Select the names for the workspaces that are displayed on the workspace bar.
+## These names are ondependant from i3 config -- workspaces in i3 config should be named 1-10.
 workspaceNames=(
     ""               # 0 (No such workspace)
     "Web Browser"    # 1
@@ -35,7 +35,7 @@ workspaceNames=(
     "Music Player"   # 10
 )
 
-# Choose which blocks are displayed on the bar.
+# Select which blocks are displayed on the status bar.
 selectedBlocks=(
     "network"
     "dropbox"
@@ -50,9 +50,9 @@ fontSize=10
 font="InputSans"
 iconFont="FontAwesome"
 
+# Bar panel settings
 separator="%{F$foreground}   |│|   "
 
-# Bar panel settings
 screenWidth=$(xrandr | awk '/Screen 0/ {print $8}')
 screenHeight=$(xrandr | awk '/Screen 0/ {print $10}' | tr -d ",")
 
