@@ -47,7 +47,6 @@ packages=(
 
 # Array of stows to be installed -- which originate from the home folder, some stows require special instructions.
 homeStows=(
-    "atom"
     "bin"
     "cava"
     "compton"
