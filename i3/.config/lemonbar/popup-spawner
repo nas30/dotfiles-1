@@ -5,7 +5,7 @@
 
 # Determine if a color has been specified by the popup command.
 case $1 in
-    %black)     popupBackground=$background; popupForeground=$foreground ;;
+    %black)     popupBackground=$black; popupForeground=$foreground ;;
     %grey)      popupBackground=$grey; popupForeground=$background ;;
     %red)       popupBackground=$red; popupForeground=$background ;;
     %green)     popupBackground=$green; popupForeground=$background ;;
@@ -13,7 +13,7 @@ case $1 in
     %blue)      popupBackground=$blue; popupForeground=$background ;;
     %magenta)   popupBackground=$magenta; popupForeground=$background ;;
     %cyan)      popupBackground=$cyan; popupForeground=$background ;;
-    %white)     popupBackground=$foreground; popupForeground=$background ;;
+    %white)     popupBackground=$white; popupForeground=$background ;;
     *)          popupBackground=$background; popupForeground=$foreground ;;  # Default case
 esac
 
