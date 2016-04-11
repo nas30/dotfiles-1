@@ -51,7 +51,7 @@ while true; do
     # Created a blurred version of the wallpaper if one does not exist, then popup a notification showing where the wallpaper originated.
     if [[ ! -e /tmp/bgblurred.jpg && -e /tmp/bgnormal.jpg ]]; then
         convert /tmp/bgnormal.jpg -channel RGBA -blur 0x15 -alpha off /tmp/bgblurred.jpg
-        ~/.config/lemonbar/popup-spawner $(echo "Wallpaper loaded from $(cat /tmp/bgsource).")
+        ~/.config/lemonbar/popup-spawner $(echo "%green Wallpaper loaded from $(cat /tmp/bgsource).")
     fi
 
     # If a window is open, display the blurred version of the wallpaper

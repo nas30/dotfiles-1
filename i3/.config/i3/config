@@ -16,9 +16,9 @@ set $ws9 9
 set $ws10 10
 set $resize 
 
-set $background #282828
-set $foreground #ebdbb2
-set $accent #fb4934
+set $background #1B2B34
+set $foreground #C0C5CE
+set $accent #EC5f67
 
 ###########################################################
 # APPEARANCE
