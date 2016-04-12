@@ -38,7 +38,7 @@
 *color12:      base0D
 *color13:      base0E
 *color14:      base0F
-*color15:      base07
+*color15:      base05
 
 !rofi
 rofi.opacity: 95
