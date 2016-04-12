@@ -7,7 +7,7 @@
 network(){
     networkState=$(grep -R "up" /sys/class/net/*/operstate)
     # Using google nameserver is a bad check, fix this later.
-    internetState=$(ping -c 1 -w 1 8.8.8.8 > /dev/null && echo 1 || echo 0)
+    internetState=$(ping -c 1 8.8.8.8 > /dev/null && echo 1 || echo 0)
     networkSSID=$(iwgetid -r)
 
     if [[ ${networkState} != "" && ${internetState} -eq 1 && ${networkSSID} != "" ]]; then
