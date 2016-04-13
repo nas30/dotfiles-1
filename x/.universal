@@ -12,32 +12,3 @@ blue=$(xrdb -query | grep -i color12 | tail -c 8)
 magenta=$(xrdb -query | grep -i color13 | tail -c 8)
 cyan=$(xrdb -query | grep -i color14 | tail -c 8)
 white=$(xrdb -query | grep -i color15 | tail -c 8)
-
-# Select which blocks are displayed on the status bar.
-selectedBlocks=(
-    "network"
-    "dropbox"
-    "volume"
-#   "battery"
-    "calendar"
-    "clock"
-)
-
-gapSize=16
-
-# Fonts
-fontSize=10
-font="InputSans"
-iconFont="FontAwesome"
-
-# Bar panel settings
-separator="%{F$foreground}   |   "
-
-screenWidth=$(xrandr | awk '/Screen 0/ {print $8}')
-screenHeight=$(xrandr | awk '/Screen 0/ {print $10}' | tr -d ",")
-
-panelHeight=$((${gapSize} * 2))
-panelWidth=$((${screenWidth} - ${panelHeight}))
-panelX=${gapSize}
-topPanelY=${gapSize}
-bottomPanelY=$((${screenHeight} - ${gapSize} - ${panelHeight}))

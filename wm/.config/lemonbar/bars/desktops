@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # Include config file.
-. ~/.config/lemonbar/config
+. ~/.universal
+. ~/.config/lemonbar/.config
 
 # Determine the status of each workspace using a loop. Focused is green, unfocused is white, empty is grey.
 desktops(){

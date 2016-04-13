@@ -1,7 +1,8 @@
 #!/bin/sh
 
 # Include config file.
-. ~/.config/lemonbar/config
+. ~/.universal
+. ~/.config/lemonbar/.config
 
 # Create switchable desktops.
 bspc monitor -d One Two Three Four Five
@@ -24,6 +25,12 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config focus_by_distance    true
 bspc config history_aware_focus  true
+
+# Set random wallpaper.
+localWallpapers=(~/.wallpaper/*)
+ if [[ ! -e /tmp/bgnormal.jpg ]]; then
+     feh --bg-fill $(printf "%s\n" "${localWallpapers[RANDOM % ${#localWallpapers[@]}]}")
+ fi
 
 # Start programs.
 compton --config ~/.config/compton/compton.conf -f &
