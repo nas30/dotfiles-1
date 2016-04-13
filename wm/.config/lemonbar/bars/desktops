@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Include config file.
+. ~/.config/lemonbar/config
+
+# Determine the status of each workspace using a loop. Focused is green, unfocused is white, empty is grey.
+desktops(){
+    currentSeparator="${separator}"
+
+    filledDesktops=$(i3-msg -t get_workspaces | grep -Po '"'"name"'"\s*:\s*"\K([^"]*)')
+    focusedDesktop=$(bspc query -D -d)
+    lastDesktop=$(bspc query -D | tail -n1)
+
+    for desktop in $(bspc query -D); do
+        if [[ "${focusedDesktop}" == "${desktop}" ]]; then
+            color=${green}
+        elif [[ $(echo ${filledDesktops} | grep -w "${i}") != "" ]]; then
+            color=${foreground}
+        else
+            color=${grey}
+        fi
+
+        if [[ "${desktop}" == "${lastDesktop}" ]]; then
+            currentSeparator=""
+        fi
+
+        desktops+="%{F${color}}${desktop}${currentSeparator}"
+    done
+
+    echo "${desktops}"
+}
+
+# Pipe functions to the bar infinitely.
+while true; do
+	echo "%{c}$(desktops)"
+done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${bottomPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d | \
+    while true; do read line; eval $line; done &

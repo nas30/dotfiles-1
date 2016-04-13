@@ -1,28 +1,39 @@
-#! /bin/sh
+#!/bin/sh
 
-# Create switchable workspaces.
-bspc monitor -d 1 2 3 4 5
+# Include config file.
+. ~/.config/lemonbar/config
 
-# Basic configuration.
-bspc config border_width         3
-bspc config window_gap           16
-bspc config split_ratio          0.52
+# Create switchable desktops.
+bspc monitor -d One Two Three Four Five
+
+# Per desktop sizing.
+for desktop in $(bspc query -D); do
+    bspc config -d $desktop border_width 0
+    bspc config -d $desktop window_gap ${gapSize}
+done
+
+# Universal sizing.
+bspc config top_padding          $((${gapSize} * 3))
+bspc config left_padding         0
+bspc config right_padding        0
+bspc config bottom_padding       $((${gapSize} * 3))
+bspc config split_ratio          0.5
+
+# Misc configurations.
 bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 bspc config focus_by_distance    true
 bspc config history_aware_focus  true
 
 # Start programs.
-compton --config ~/.config/compton/compton.conf -f
-dropbox
+compton --config ~/.config/compton/compton.conf -f &
+dropbox &
 
 # Start hacky scripts
-~/bin/wallpaper-monitor
-~/.config/lemonbar/popups/updates
+~/bin/wallpaper-monitor &
+~/.config/lemonbar/popups/updates &
 
-# Load lemonbar.
-# conky -c ~/.config/conky/empty_top
-~/.config/lemonbar/bars/status
+# Start lemonbar panels.
+~/.config/lemonbar/bars/status &
 
-# conky -c ~/.config/conky/empty_bottom
-~/.config/lemonbar/bars/workspaces
+~/.config/lemonbar/bars/desktops

@@ -1,7 +1,4 @@
-#!/bin/bash
-
-# Outside sources
-bspwmrc="$HOME/.config/bspwm/bspwmrc"
+#!/bin/sh
 
 # Fetch information from the X resource database.
 background=$(xrdb -query | grep -i background | tail -c 8)
@@ -16,25 +13,6 @@ magenta=$(xrdb -query | grep -i color13 | tail -c 8)
 cyan=$(xrdb -query | grep -i color14 | tail -c 8)
 white=$(xrdb -query | grep -i color15 | tail -c 8)
 
-# Fetch information from i3 config
-gapSize=$(awk '/window_gap/ {print $4}' ${bspwmrc})
-
-# Select the names for the workspaces that are displayed on the workspace bar.
-## These names are ondependant from i3 config -- workspaces in i3 config should be named 1-10.
-workspaceNames=(
-    ""               # 0 (No such workspace)
-    "One"            # 1
-    "Two"            # 2
-    "Three"          # 3
-    "Four"           # 4
-    "Five"           # 5
-    "Six"            # 6
-    "Seven"          # 7
-    "Eight"          # 8
-    "Nine"           # 9
-    "Ten"            # 10
-)
-
 # Select which blocks are displayed on the status bar.
 selectedBlocks=(
     "network"
@@ -44,6 +22,8 @@ selectedBlocks=(
     "calendar"
     "clock"
 )
+
+gapSize=16
 
 # Fonts
 fontSize=10
@@ -60,4 +40,4 @@ panelHeight=$((${gapSize} * 2))
 panelWidth=$((${screenWidth} - ${panelHeight}))
 panelX=${gapSize}
 topPanelY=${gapSize}
-bottomPanelY=$((${screenHeight} - ${panelHeight} - ${gapSize}))
+bottomPanelY=$((${screenHeight} - ${gapSize} - ${panelHeight}))

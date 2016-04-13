@@ -24,4 +24,4 @@ super + {Left, Down, Up, Right}
 
 $ Change workspace to the given number.
 super + {1, 2, 3, 4, 5}
-    bspc desktop -f {1, 2, 3, 4, 5}
+    bspc desktop -f {One, Two, Three, Four, Five}

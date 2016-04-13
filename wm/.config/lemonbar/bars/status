@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Include config file.
 . ~/.config/lemonbar/config
