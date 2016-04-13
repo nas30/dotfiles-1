@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Outside sources
-i3config="$HOME/.config/i3/config"
+bspwmrc="$HOME/.config/bspwm/bspwmrc"
 
 # Fetch information from the X resource database.
 background=$(xrdb -query | grep -i background | tail -c 8)
@@ -17,22 +17,22 @@ cyan=$(xrdb -query | grep -i color14 | tail -c 8)
 white=$(xrdb -query | grep -i color15 | tail -c 8)
 
 # Fetch information from i3 config
-gapSize=$(awk '/gaps inner/ {print $3}' ${i3config})
+gapSize=$(awk '/window_gap/ {print $4}' ${bspwmrc})
 
 # Select the names for the workspaces that are displayed on the workspace bar.
 ## These names are ondependant from i3 config -- workspaces in i3 config should be named 1-10.
 workspaceNames=(
     ""               # 0 (No such workspace)
-    "Web Browser"    # 1
-    "Terminal"       # 2
-    "Text Editor"    # 3
-    "Unspecified"    # 4
-    "Unspecified"    # 5
-    "Unspecified"    # 6
-    "Unspecified"    # 7
-    "Unspecified"    # 8
-    "Unspecified"    # 9
-    "Music Player"   # 10
+    "One"            # 1
+    "Two"            # 2
+    "Three"          # 3
+    "Four"           # 4
+    "Five"           # 5
+    "Six"            # 6
+    "Seven"          # 7
+    "Eight"          # 8
+    "Nine"           # 9
+    "Ten"            # 10
 )
 
 # Select which blocks are displayed on the status bar.
@@ -51,7 +51,7 @@ font="InputSans"
 iconFont="FontAwesome"
 
 # Bar panel settings
-separator="%{F$foreground}   |│|   "
+separator="%{F$foreground}   |   "
 
 screenWidth=$(xrandr | awk '/Screen 0/ {print $8}')
 screenHeight=$(xrandr | awk '/Screen 0/ {print $10}' | tr -d ",")

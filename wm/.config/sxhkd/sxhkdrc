@@ -1,0 +1,27 @@
+# Open the program launcher.
+super + Return
+	rofi -show run
+
+# Reload sxhkd and xresources.
+super + shift + r
+	pkill -USR1 -x sxhkd && xrdb -load ~/.Xresources
+
+# Quit the current X session.
+super + shift + Escape
+	bspc quit
+
+# Close and kill the focused window.
+super + F4
+	bspc node -{c, k}
+
+# Change focus to node in the given direction.
+super + {Left, Down, Up, Right}
+	bspc node -f {west, south, north, east}
+
+# Change focus to clicked node.
+~button1
+    bspc pointer -g focus
+
+$ Change workspace to the given number.
+super + {1, 2, 3, 4, 5}
+    bspc desktop -f {1, 2, 3, 4, 5}

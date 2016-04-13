@@ -1,0 +1,28 @@
+#! /bin/sh
+
+# Create switchable workspaces.
+bspc monitor -d 1 2 3 4 5
+
+# Basic configuration.
+bspc config border_width         3
+bspc config window_gap           16
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+bspc config focus_by_distance    true
+bspc config history_aware_focus  true
+
+# Start programs.
+compton --config ~/.config/compton/compton.conf -f
+dropbox
+
+# Start hacky scripts
+~/bin/wallpaper-monitor
+~/.config/lemonbar/popups/updates
+
+# Load lemonbar.
+# conky -c ~/.config/conky/empty_top
+~/.config/lemonbar/bars/status
+
+# conky -c ~/.config/conky/empty_bottom
+~/.config/lemonbar/bars/workspaces

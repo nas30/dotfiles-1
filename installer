@@ -22,14 +22,15 @@ packages=(
     "zsh-syntax-highlighting"           # Syntax highlighting plugin for zsh.
 
     # Internet
-    "chromium"                          # Web browser.
+    "qutebrowser"                       # Web browser.
     "dropbox"                           # Cloud storage.
     "dropbox-cli"                       # Terminal interface for dropbox.
 
     # Window management
-    "i3-gaps-git"                       # Window manager.
+    "bspwm"                             # Window manager.
+    "sxhkd"                             # Hotkey daemon.
     "lemonbar-xft-git"                  # Panel displayer.
-    "conky"                             # Panel helper.
+    "conky"                             # Panel gap helper.
     "compton"                           # Compositer.
     "rofi"                              # Program run menu.
 
@@ -49,14 +50,13 @@ packages=(
 homeStows=(
     "bin"
     "cava"
-    "compton"
-    "i3"
     "neofetch"
     "pacaur"
     "qutebrowser"
     "ranger"
     "termite"
     "wallpaper"
+    "wm"
     "x"
 )
 
