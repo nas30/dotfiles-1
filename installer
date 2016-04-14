@@ -14,6 +14,7 @@ packages=(
     # Editing tools
     "atom-editor"                       # Hackable text editor.
     "gvfs"                              # Used by atom to delete files.
+    "jdk"                               # Oracle Java development kit.
     "intellij-idea-community-edition"   # Java IDE.
 
     # Shell tools

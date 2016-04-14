@@ -36,13 +36,13 @@ dropbox(){
         dropbox="Not Running"
         dropboxColor=${red}
     elif [[ $dropboxInfo == "Connecting..." || $dropboxInfo == "Starting..." ]]; then
-        dropbox="Attempting Connection"
+        dropbox="Connecting"
         dropboxColor=${foreground}
     elif [[ $(echo $dropboxInfo | grep "Syncing") != "" || $(echo $dropboxInfo | grep "Downloading") != "" || $(echo $dropboxInfo | grep "Indexing") != "" ]]; then
         dropbox="Syncing"
         dropboxColor=${green}
     else
-        dropbox="Up To Date"
+        dropbox="Idle"
         dropboxColor=${foreground}
     fi
 
