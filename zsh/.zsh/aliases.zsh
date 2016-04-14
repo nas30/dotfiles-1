@@ -15,10 +15,6 @@ alias stowinstallhome='stow -d ~/dotfiles -t ~'
 alias stowinstallroot='sudo stow -d ~/dotfiles -t /'
 alias stowuninstall='stow -D'
 
-# Quick media access
-alias studygrind='mpv --no-video --shuffle "https://soundcloud.com/thissiteisokay/sets/study-grind"'
-# alias porn='mpv "http://www.pornhub.com/random"'
-
 alias cls='clear'
 
 alias ls='ls -l --color=auto'

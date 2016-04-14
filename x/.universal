@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Fetch information from the X resource database.
+# X resource database.
 background=$(xrdb -query | grep -i background | tail -c 8)
 foreground=$(xrdb -query | grep -i foreground | tail -c 8)
 black=$(xrdb -query | grep -i color0 | tail -c 8)
@@ -12,3 +12,7 @@ blue=$(xrdb -query | grep -i color12 | tail -c 8)
 magenta=$(xrdb -query | grep -i color13 | tail -c 8)
 cyan=$(xrdb -query | grep -i color14 | tail -c 8)
 white=$(xrdb -query | grep -i color15 | tail -c 8)
+
+# Screen resolution.
+screenWidth=$(xrandr | awk '/Screen 0/ {print $8}')
+screenHeight=$(xrandr | awk '/Screen 0/ {print $10}' | tr -d ",")

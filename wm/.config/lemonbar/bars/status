@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Include config file.
-. ~/.universal
 . ~/.config/lemonbar/.config
 
 # Fetch current network connection state -- and SSID, if available.

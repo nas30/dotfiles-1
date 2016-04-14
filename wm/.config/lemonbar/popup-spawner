@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Include config file.
-. ~/.universal
 . ~/.config/lemonbar/.config
 
 # Determine if a color has been specified by the popup command.
