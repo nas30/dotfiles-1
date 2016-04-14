@@ -2,37 +2,18 @@
 
 # Configuration
 image="/tmp/screenie.png"
-clientID="3e7a4deb7ac67da"  # ID for imgur authentication.
-
-imgurUpload(){
-    # Upload image to imgur.
-    res=$(curl -sH "Authorization: Client-ID ${clientID}" -F "image=@${image}" "https://api.imgur.com/3/upload")
-
-    # Store imgur link in clipboard.
-    echo ${res} | grep -qo '"status":200' && link=$(echo ${res} | sed -e 's/.*"link":"\([^"]*\).*/\1/' -e 's/\\//g')
-    test -n "${link}" && (printf ${link} | xclip; printf "\a") || echo "${res}" > "$image.error"
-}
-
-clipboard(){
-    # Check filetype of image in order to store in clipboard.
-    filetype=$(file -b --mime-type "${image}")
-
-    # Store image in clipboard
-    xclip -selection clipboard -t "${filetype}" < "${image}"
-}
 
 # Remove any previous image.
 rm ${image}
 
-# Parse arguments
-while getopts f:s:u:c: opt; do
-    case $opt in
-        f) scrot -z -q 100 ${image} ;;
-        s) scrot -z -q 100 -s ${image} ;;
-        u) $(imgurUpload) ;;
-        c) $(clipboard) ;;
-    esac
-done
+# Take screenshot.
+scrot -z -q 100 ${image}
+
+# Check filetype of image in order to store in clipboard.
+filetype=$(file -b --mime-type "${image}")
+
+# Store image in clipboard
+xclip -selection clipboard -t "${filetype}" < "${image}"
 
 # Throw popup on success of screenshot.
 if [[ -e ${image} ]]; then

@@ -9,7 +9,7 @@ bspc monitor -d One Two Three Four Five
 
 # Per desktop sizing.
 for desktop in $(bspc query -D); do
-    bspc config -d $desktop border_width 0
+    bspc config -d $desktop border_width ${borderSize}
     bspc config -d $desktop window_gap ${gapSize}
 done
 

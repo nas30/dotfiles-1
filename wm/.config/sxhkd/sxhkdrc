@@ -14,14 +14,22 @@ super + shift + Escape
 super + F4
 	bspc node -{c, k}
 
-# Change focus to node in the given direction.
+# Change focus to window in the given direction.
 super + {Left, Down, Up, Right}
 	bspc node -f {west, south, north, east}
+
+# Swap focused window with the window in the given direction.
+super + shift + {Left, Down, Up, Right}
+     bspc node -s {west, south, north, east}
 
 # Change focus to clicked node.
 ~button1
     bspc pointer -g focus
 
-$ Change workspace to the given number.
+# Change workspace to the given number.
 super + {1, 2, 3, 4, 5}
     bspc desktop -f {One, Two, Three, Four, Five}
+
+# Take screenshot.
+Print
+    ~/bin/screenie

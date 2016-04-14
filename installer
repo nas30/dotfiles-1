@@ -22,7 +22,8 @@ packages=(
     "zsh-syntax-highlighting"           # Syntax highlighting plugin for zsh.
 
     # Internet
-    "qutebrowser"                       # Web browser.
+    "chromium"                          # Web browser.
+    "qutebrowser"                       # Small web browser for encapsuling web apps.
     "dropbox"                           # Cloud storage.
     "dropbox-cli"                       # Terminal interface for dropbox.
 
