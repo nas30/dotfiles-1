@@ -7,7 +7,6 @@ packages=(
     "neofetch"                          # Display information about system.
     "txtw-git"                          # Returns text width in pixels.
     "infinality-bundle"                 # Patches to improve font rendering.
-    "jq"                                # Tool for parsing jquery.
     "wget"                              # Tool for downloading files from the internet.
     "unzip"                             # Tool for extracting zip archives.
     "xclip"                             # Allows manipulation of clipboard from terminal.
@@ -31,7 +30,6 @@ packages=(
     "bspwm"                             # Window manager.
     "sxhkd"                             # Hotkey daemon.
     "lemonbar-xft-git"                  # Panel displayer.
-    "conky"                             # Panel gap helper.
     "compton"                           # Compositer.
     "rofi"                              # Program run menu.
 
