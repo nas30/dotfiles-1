@@ -8,14 +8,14 @@
 desktops(){
     currentSeparator="${separator}"
 
-    filledDesktops=$(i3-msg -t get_workspaces | grep -Po '"'"name"'"\s*:\s*"\K([^"]*)')
+    # filledDesktops=$(i3-msg -t get_workspaces | grep -Po '"'"name"'"\s*:\s*"\K([^"]*)')
     focusedDesktop=$(bspc query -D -d)
     lastDesktop=$(bspc query -D | tail -n1)
 
     for desktop in $(bspc query -D); do
         if [[ "${focusedDesktop}" == "${desktop}" ]]; then
             color=${green}
-        elif [[ $(echo ${filledDesktops} | grep -w "${i}") != "" ]]; then
+        elif [[ $(bspc query -N -d ${desktop}) != "" ]]; then
             color=${foreground}
         else
             color=${grey}

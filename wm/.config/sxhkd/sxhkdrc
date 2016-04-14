@@ -10,9 +10,9 @@ super + shift + r
 super + shift + Escape
 	bspc quit
 
-# Close and kill the focused window.
+# Kill the focused window.
 super + F4
-	bspc node -{c, k}
+	bspc node -k
 
 # Change focus to window in the given direction.
 super + {Left, Down, Up, Right}
@@ -21,6 +21,10 @@ super + {Left, Down, Up, Right}
 # Swap focused window with the window in the given direction.
 super + shift + {Left, Down, Up, Right}
      bspc node -s {west, south, north, east}
+
+# Change which direction the next window will open in.
+super + ctrl + {Left, Down, Up, Right}
+    bspc node -p {west, south, north, east}
 
 # Change focus to clicked node.
 ~button1
