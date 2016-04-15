@@ -68,28 +68,28 @@ sudo -v
 echo "Checking dependencies."
 sudo pacman -S --needed --noconfirm base-devel git stow
 
-# Install stowed files from array.
-echo "Installing dotfiles."
-
 # Remove old stowed files.
-rm -rf ~/bin/
-rm -rf ~/.config/cava/
-rm -rf ~/.config/neofetch/
-rm -rf ~/.config/pacaur/
-rm -rf ~/.config/qutebrowser/
-rm -rf ~/.config/ranger/
-rm -rf ~/.config/termite/
-rm -rf ~/.wallpaper/
-rm -rf ~/.config/bspwm/
-rm -rf ~/.config/compton/
-rm -rf ~/.config/lemonbar/
-rm -rf ~/.config/sxhkd/
+rm -rf ~/bin
+rm -rf ~/.config/cava
+rm -rf ~/.config/neofetch
+rm -rf ~/.config/pacaur
+rm -rf ~/.config/qutebrowser
+rm -rf ~/.config/ranger
+rm -rf ~/.config/termite
+rm -rf ~/.wallpaper
+rm -rf ~/.config/bspwm
+rm -rf ~/.config/compton
+rm -rf ~/.config/lemonbar
+rm -rf ~/.config/sxhkd
 rm -rf ~/.universal
 rm -rf ~/.xinitrc
 rm -rf ~/.Xresources
-rm -rf ~/.zsh/
+rm -rf ~/.zsh
 rm -rf ~/.zlogin
 rm -rf ~/.zshrc
+
+# Install stowed files from array.
+echo "Installing dotfiles."
 
 for ((i=0; i<=$((${#homeStows[@]} - 1)); i++)); do
     stow -d ~/dotfiles -t ~ ${homeStows[i]}
