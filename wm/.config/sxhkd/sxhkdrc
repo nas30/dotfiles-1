@@ -1,7 +1,3 @@
-# Open the program launcher.
-super + Return
-	rofi -show run
-
 # Reload sxhkd and xresources.
 super + shift + r
 	pkill -USR1 -x sxhkd && xrdb -load ~/.Xresources
@@ -22,13 +18,17 @@ super + {Left, Down, Up, Right}
 ~button1
     bspc pointer -g focus
 
-# Swap focused node with the window in the given direction.
+# Swap focused node with the node in the given direction.
 super + shift + {Left, Down, Up, Right}
      bspc node -s {west, south, north, east}
 
-# Change which direction the next node will open in.
+# Preselect where the next node will open.
 super + ctrl + {Left, Down, Up, Right}
     bspc node -p {west, south, north, east}
+
+# Cancel node preselection.
+super + ctrl + Escape
+    bspc node -p cancel
 
 # Move selected node to the given desktop number.
 super + shift + {1, 2, 3, 4, 5}
@@ -37,6 +37,12 @@ super + shift + {1, 2, 3, 4, 5}
 # Change desktop to the given number.
 super + {1, 2, 3, 4, 5}
     bspc desktop -f {One, Two, Three, Four, Five}
+
+# # #
+
+# Open the program launcher.
+super + Return
+    rofi -show run
 
 # Take screenshot.
 Print

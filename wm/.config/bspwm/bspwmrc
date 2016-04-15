@@ -20,15 +20,12 @@ bspc config bottom_padding $((${gapSize} * 3))
 bspc config split_ratio 0.50
 
 # Colors.
-bspc config active_border_color "${foreground}"
 bspc config focused_border_color "${foreground}"
 bspc config normal_border_color "${background}"
+bspc config presel_border_color "${blue}"
 
-# Misc configurations.
-#bspc config borderless_monocle true
-#bspc config gapless_monocle true
-#bspc config focus_by_distance true
-#bspc config history_aware_focus true
+# Misc settings.
+bspc config auto_cancel true
 
 # Set random wallpaper.
 #localWallpapers=(~/.wallpaper/*)
