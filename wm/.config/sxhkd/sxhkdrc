@@ -10,30 +10,46 @@ super + shift + r
 super + shift + Escape
 	bspc quit
 
-# Kill the focused window.
+# Kill the focused node.
 super + F4
 	bspc node -k
 
-# Change focus to window in the given direction.
+# Change focus to node in the given direction.
 super + {Left, Down, Up, Right}
 	bspc node -f {west, south, north, east}
-
-# Swap focused window with the window in the given direction.
-super + shift + {Left, Down, Up, Right}
-     bspc node -s {west, south, north, east}
-
-# Change which direction the next window will open in.
-super + ctrl + {Left, Down, Up, Right}
-    bspc node -p {west, south, north, east}
 
 # Change focus to clicked node.
 ~button1
     bspc pointer -g focus
 
-# Change workspace to the given number.
+# Swap focused node with the window in the given direction.
+super + shift + {Left, Down, Up, Right}
+     bspc node -s {west, south, north, east}
+
+# Change which direction the next node will open in.
+super + ctrl + {Left, Down, Up, Right}
+    bspc node -p {west, south, north, east}
+
+# Move selected node to the given desktop number.
+super + shift + {1, 2, 3, 4, 5}
+    bspc node -d {One, Two, Three, Four, Five} -f
+
+# Change desktop to the given number.
 super + {1, 2, 3, 4, 5}
     bspc desktop -f {One, Two, Three, Four, Five}
 
 # Take screenshot.
 Print
     ~/bin/screenie
+
+# Raise volume.
+XF86AudioRaiseVolume
+    ponymix increase 5
+
+# Lower volume.
+XF86AudioLowerVolume
+    ponymix decrease 5
+
+# Toggle volume mute.
+XF86AudioMute
+    ponymix toggle

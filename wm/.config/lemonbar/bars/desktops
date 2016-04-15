@@ -23,7 +23,7 @@ desktops(){
             currentSeparator=""
         fi
 
-        desktops+="%{F${color}}${desktop}${currentSeparator}"
+        desktops+="%{F${color}}%{A:bspc desktop -f ${desktop}:}${desktop}%{A}${currentSeparator}"
     done
 
     echo "${desktops}"
