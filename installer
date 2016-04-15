@@ -72,24 +72,24 @@ sudo pacman -S --needed --noconfirm base-devel git stow
 echo "Installing dotfiles."
 
 # Remove old stowed files.
-rm -r ~/bin/
-rm -r ~/.config/cava/
-rm -r ~/.config/neofetch/
-rm -r ~/.config/pacaur/
-rm -r ~/.config/qutebrowser/
-rm -r ~/.config/ranger/
-rm -r ~/.config/termite/
-rm -r ~/.wallpaper/
-rm -r ~/.config/bspwm/
-rm -r ~/.config/compton/
-rm -r ~/.config/lemonbar/
-rm -r ~/.config/sxhkd/
-rm -r ~/.universal
-rm -r ~/.xinitrc
-rm -r ~/.Xresources
-rm -r ~/.zsh/
-rm -r ~/.zlogin
-rm -r ~/.zshrc
+rm -rf ~/bin/
+rm -rf ~/.config/cava/
+rm -rf ~/.config/neofetch/
+rm -rf ~/.config/pacaur/
+rm -rf ~/.config/qutebrowser/
+rm -rf ~/.config/ranger/
+rm -rf ~/.config/termite/
+rm -rf ~/.wallpaper/
+rm -rf ~/.config/bspwm/
+rm -rf ~/.config/compton/
+rm -rf ~/.config/lemonbar/
+rm -rf ~/.config/sxhkd/
+rm -rf ~/.universal
+rm -rf ~/.xinitrc
+rm -rf ~/.Xresources
+rm -rf ~/.zsh/
+rm -rf ~/.zlogin
+rm -rf ~/.zshrc
 
 for ((i=0; i<=$((${#homeStows[@]} - 1)); i++)); do
     stow -d ~/dotfiles -t ~ ${homeStows[i]}
@@ -98,7 +98,7 @@ done
 
     # Install stowed files which have special conditions.
     # Pacman
-    sudo rm /etc/pacman.conf
+    sudo rm -rf /etc/pacman.conf
     sudo stow -d ~/dotfiles -t / pacman--root
     echo "Dotfiles for pacman installed."
 
@@ -140,7 +140,7 @@ cd "${buildroot}/pacaur" || exit 1
 makepkg --syncdeps --install --noconfirm
 
 cd "$HOME" || exit 1
-rm -r "$buildroot"
+rm -rf "$buildroot"
 
 # Install packages from array.
 echo "Installing user specified packages."
