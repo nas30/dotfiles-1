@@ -6,19 +6,14 @@
 # Fetch current network connection state -- and SSID, if available.
 network(){
     networkState=$(grep -R "up" /sys/class/net/*/operstate)
-    # Using google nameserver is a bad check, fix this later.
-    internetState=$(ping -c 1 8.8.8.8 > /dev/null && echo 1 || echo 0)
     networkSSID=$(iwgetid -r)
 
-    if [[ ${networkState} != "" && ${internetState} -eq 1 && ${networkSSID} != "" ]]; then
+    if [[ ${networkState} != "" && ${networkSSID} != "" ]]; then
         network=${networkSSID}
         networkColor=${foreground}
-    elif [[ ${networkState} != "" && ${internetState} -eq 1 ]]; then
-    	network="Online"
+    elif [[ ${networkState} != "" ]]; then
+    	  network="Online"
         networkColor=${foreground}
-    elif [[ $networkState != "" && ${internetState} -eq 0 ]]; then
-        network="LAN Only"
-        networkColor=${yellow}
     else
         network="Offline"
         networkColor=${red}
