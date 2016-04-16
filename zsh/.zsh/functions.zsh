@@ -30,3 +30,16 @@ function git-aio()
     git commit -m "${commitMessage}"
     git push
 }
+
+fuction java-run()
+{
+    javaCompileDirectory=/tmp/javaclasses
+    javaNoExtension="${1%.*}"
+
+    mkdir ${javaCompileDirectory}
+    javac -d ${javaCompileDirectory} ${javaNoExtension}.java
+    cd ${javaCompileDirectory}
+
+    java ${javaNoExtension}
+    cd - > /dev/null 2>&1
+}
