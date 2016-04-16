@@ -32,7 +32,7 @@ super + ctrl + Escape
 
 # Move selected node to the given desktop number.
 super + shift + {1, 2, 3, 4, 5}
-    bspc node -d {One, Two, Three, Four, Five} -f
+    bspc node -d {One, Two, Three, Four, Five}
 
 # Change desktop to the given number.
 super + {1, 2, 3, 4, 5}
