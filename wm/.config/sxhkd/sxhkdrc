@@ -6,9 +6,9 @@ super + shift + r
 super + shift + Escape
 	bspc quit
 
-# Kill the focused node.
+# Close the focused node.
 super + F4
-	bspc node -k
+	bspc node -c
 
 # Change focus to node in the given direction.
 super + {Left, Down, Up, Right}
