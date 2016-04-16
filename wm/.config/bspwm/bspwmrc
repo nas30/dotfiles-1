@@ -34,7 +34,7 @@ bspc config auto_cancel true
 #fi
 
 # Set wallpaper.
-feh --bg-fill ~/.wallpaper/oceanic_next.png
+feh --bg-tile ~/.wallpaper/tiled/tweed.png
 
 # Start programs.
 compton --config ~/.config/compton/compton.conf -f &

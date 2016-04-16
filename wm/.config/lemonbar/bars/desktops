@@ -11,9 +11,11 @@ desktops(){
     lastDesktop=$(bspc query -D | tail -n1)
 
     for desktop in $(bspc query -D); do
-        if [[ "${focusedDesktop}" == "${desktop}" ]]; then
+        numberOfNodes=$(bspc query -N -d ${desktop} | wc -l)
+
+        if [[ "${desktop}" == "${focusedDesktop}" ]]; then
             color=${green}
-        elif [[ $(bspc query -N -d ${desktop}) != "" ]]; then
+        elif [[ ${numberOfNodes} -gt 0 ]]; then
             color=${foreground}
         else
             color=${grey}
