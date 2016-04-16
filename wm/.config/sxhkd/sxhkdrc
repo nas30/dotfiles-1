@@ -1,6 +1,6 @@
-# Reload sxhkd and xresources.
+# Reload window manager modules.
 super + shift + r
-	pkill -USR1 -x sxhkd && xrdb -load ~/.Xresources
+	pkill -USR1 -x sxhkd && killall lemonbar && xrdb -load ~/.Xresources && ~/.config/bspwm/bspwmrc
 
 # Quit the current X session.
 super + shift + Escape
