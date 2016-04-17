@@ -17,10 +17,10 @@ cursor_shape = ibeam
 foreground      = #c4c4b5
 foreground_bold = #c4c4b5
 cursor          = #c4c4b5
-background      = #2b3135
+background      = #20292d
 
 # 16 color space
-color0  = #2b3135
+color0  = #20292d
 color1  = #a66959
 color2  = #769070
 color3  = #ac8d6e

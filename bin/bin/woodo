@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
-K="$(tput setaf 240)"
+K="$(tput setaf 0)"
 Y="$(tput setaf 11)"
 O="$(tput setaf 3)"
 DG="$(tput setaf 2)"
 LG="$(tput setaf 10)"
-P="$(tput setaf 130)"
+P="$(tput setaf 9)"
 W="$(tput setaf 15)"
 CLEAR="$(tput sgr0)"
 
@@ -38,6 +38,6 @@ else
                 ████████████████${O}██${K}██
                             ██${O}████${K}██
                               ████${CLEAR}
-                              
+
 	EOF
 fi
