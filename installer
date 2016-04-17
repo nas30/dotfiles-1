@@ -50,6 +50,7 @@ packages=(
 
 # Array of stows to be installed -- which originate from the home folder, some stows require special instructions.
 homeStows=(
+    "atom"
     "bin"
     "cava"
     "fonts"
@@ -73,22 +74,23 @@ sudo pacman -S --needed --noconfirm base-devel git stow
 
 # Remove old stowed files.
 rm -rf ~/bin
+rm -rf ~/.config/bspwm
 rm -rf ~/.config/cava
+rm -rf ~/.config/compton
+rm -rf ~/.config/lemonbar
 rm -rf ~/.config/neofetch
 rm -rf ~/.config/pacaur
 rm -rf ~/.config/qutebrowser
 rm -rf ~/.config/ranger
-rm -rf ~/.config/termite
-rm -rf ~/.wallpaper
-rm -rf ~/.config/bspwm
-rm -rf ~/.config/compton
-rm -rf ~/.config/lemonbar
 rm -rf ~/.config/sxhkd
+rm -rf ~/.config/termite
+rm -rf ~/.fonts
 rm -rf ~/.universal
+rm -rf ~/.wallpaper
 rm -rf ~/.xinitrc
 rm -rf ~/.Xresources
-rm -rf ~/.zsh
 rm -rf ~/.zlogin
+rm -rf ~/.zsh
 rm -rf ~/.zshrc
 
 # Install stowed files from array.
