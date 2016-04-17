@@ -1,46 +1,50 @@
-! special
-*.foreground:   #c4c4b5
-*.background:   #2b3135
-*.cursorColor:  #c4c4b5
+#define dark    #2b303b
+#define medium  #4c5356
+#define light   #c4c4b5
 
-! black
-*.color0:       #2b3135
-*.color8:       #4c5356
+#define red     #a66959
+#define green   #769070
+#define yellow  #ac8d6e
+#define blue    #607a86
+#define magenta #80757e
+#define cyan    #60867f
+#define orange  #b38359
 
-! red
-*.color1:       #a66959
-*.color9:       #a66959
+*.foreground:   light
+*.background:   dark
+*.cursorColor:  light
 
-! green
-*.color2:       #769070
-*.color10:      #769070
+*.color0:       dark
+*.color8:       medium
 
-! yellow
-*.color3:       #ac8d6e
-*.color11:      #ac8d6e
+*.color1:       red
+*.color9:       red
 
-! blue
-*.color4:       #607a86
-*.color12:      #607a86
+*.color2:       green
+*.color10:      green
 
-! magenta
-*.color5:       #80757e
-*.color13:      #80757e
+*.color3:       yellow
+*.color11:      yellow
 
-! cyan
-*.color6:       #60867f
-*.color14:      #60867f
+*.color4:       blue
+*.color12:      blue
 
-! white
-*.color7:       #c4c4b5
-*.color15:      #c4c4b5
+*.color5:       magenta
+*.color13:      magenta
+
+*.color6:       cyan
+*.color14:      cyan
+
+*.color7:       light
+*.color15:      light
+
 
 !rofi
 rofi.opacity: 95
 rofi.separator-style: none
 rofi.hide-scrollbar: true
 rofi.bw: 0
-rofi.fg: #c4c4b5
-rofi.bg: #2b3135
-rofi.hlfg: #2b3135
-rofi.hlbg: #c4c4b5
+rofi.fg: light
+rofi.bg: dark
+rofi.hlfg: dark
+rofi.hlbg: light
