@@ -1,0 +1,23 @@
+"*":
+  core:
+    autoHideMenuBar: true
+    themes: [
+      "nucleus-dark-ui"
+      "quickdraw"
+    ]
+  editor:
+    fontFamily: "Input Mono"
+    fontSize: 15
+    lineHeight: 1.25
+    tabLength: 4
+    tabType: "soft"
+  minimap:
+    scrollAnimation: true
+  pigments:
+    markerType: "dot"
+    sortPaletteColors: "by color"
+  "tree-view":
+    hideIgnoredNames: true
+    hideVcsIgnoredFiles: true
+  welcome:
+    showOnStartup: false
