@@ -1,31 +1,31 @@
 // Language syntax highlighting
 
 .comment {
-  color: @gruvbox-medium;
+  color: @quickdraw-medium;
   font-style: italic;
 
   /* Keywords inside comments (e.g. yard, javadoc, etc) should be more subdued
      than other keywords */
-  .keyword, .keyword.punctuation { color: @gruvbox-light2; }
-  .punctuation { color: @gruvbox-light3; }
-  .string, .type, .parameter { color: @gruvbox-light3; }
+  .keyword, .keyword.punctuation { color: @quickdraw-light; }
+  .punctuation { color: @quickdraw-light; }
+  .string, .type, .parameter { color: @quickdraw-light; }
 }
 
 .entity {
   &.name.type {
-    color: @gruvbox-bright-yellow;
+    color: @quickdraw-yellow;
   }
 
   &.other.inherited-class {
-    color: @gruvbox-bright-yellow;
+    color: @quickdraw-yellow;
   }
 }
 
 .keyword {
-  color: @gruvbox-bright-red;
+  color: @quickdraw-red;
 
   &.control {
-    color: @gruvbox-bright-red;
+    color: @quickdraw-red;
   }
 
   &.operator {
@@ -33,21 +33,21 @@
   }
 
   &.other.special-method {
-    color: @gruvbox-bright-orange;
+    color: @quickdraw-orange;
   }
 
   &.other.unit {
-    color: @gruvbox-bright-purple;
+    color: @quickdraw-purple;
   }
 }
 
 .storage {
-  color: @gruvbox-bright-red;
+  color: @quickdraw-red;
 
   &.type {
     &.annotation,
     &.primitive {
-      color: @gruvbox-bright-red;
+      color: @quickdraw-red;
     }
   }
 
@@ -60,34 +60,34 @@
 }
 
 .constant {
-  color: @gruvbox-bright-purple;
+  color: @quickdraw-purple;
 
   &.variable {
-    color: @gruvbox-bright-purple;
+    color: @quickdraw-purple;
   }
 
   &.character.escape {
-    color: @gruvbox-bright-red;
+    color: @quickdraw-red;
   }
 
   &.numeric {
-    color: @gruvbox-bright-purple;
+    color: @quickdraw-purple;
   }
 
   &.other.color {
-    color: @gruvbox-bright-red;
+    color: @quickdraw-red;
   }
 
   &.other.symbol {
-    color: @gruvbox-bright-purple;
+    color: @quickdraw-purple;
   }
 }
 
 .variable {
-  color: @gruvbox-bright-blue;
+  color: @quickdraw-blue;
 
   &.interpolation {
-    color: @gruvbox-neutral-blue;
+    color: @quickdraw-blue;
   }
 
   &.parameter {
@@ -96,33 +96,33 @@
 }
 
 .invalid.illegal {
-  background-color: @gruvbox-bright-blue;
+  background-color: @quickdraw-blue;
   color: @syntax-background-color;
 }
 
 .string {
-  color: @gruvbox-bright-green;
+  color: @quickdraw-green;
 
   &.regexp {
-    color: @gruvbox-bright-red;
+    color: @quickdraw-red;
 
     .source.ruby.embedded {
-      color: @gruvbox-bright-yellow;
+      color: @quickdraw-yellow;
     }
   }
 
   &.other.link {
-    color: @gruvbox-bright-blue;
+    color: @quickdraw-blue;
   }
 }
 
 .punctuation {
   &.definition {
     &.comment {
-      color: @gruvbox-medium;
+      color: @quickdraw-medium;
     }
 
-    &.tag { color: @gruvbox-bright-blue; }
+    &.tag { color: @quickdraw-blue; }
 
     &.method-parameters,
     &.function-parameters,
@@ -135,23 +135,23 @@
 
     &.heading,
     &.identity {
-      color: @gruvbox-bright-green;
+      color: @quickdraw-green;
     }
 
     &.bold {
-      color: @gruvbox-bright-yellow;
+      color: @quickdraw-yellow;
       font-weight: bold;
     }
 
     &.italic {
-      color: @gruvbox-bright-red;
+      color: @quickdraw-red;
       font-style: italic;
     }
   }
 
   &.section {
     &.embedded {
-      color: @gruvbox-bright-blue;
+      color: @quickdraw-blue;
     }
 
     &.method,
@@ -164,51 +164,51 @@
 
 .support {
   &.class {
-    color: @gruvbox-bright-yellow;
+    color: @quickdraw-yellow;
   }
 
   &.function  {
-    color: @gruvbox-bright-orange;
+    color: @quickdraw-orange;
 
     &.any-method {
-      color: @gruvbox-bright-green;
+      color: @quickdraw-green;
     }
   }
 }
 
 .entity {
   &.name.function {
-    color: @gruvbox-bright-green;
+    color: @quickdraw-green;
   }
 
   &.name.class,
   &.name.type.class {
-    color: @gruvbox-bright-yellow;
+    color: @quickdraw-yellow;
     .punctuation.separator {
       color: @syntax-fg;
     }
   }
 
   &.name.section {
-    color: @gruvbox-bright-green;
+    color: @quickdraw-green;
   }
 
   &.name.tag {
-    color: @gruvbox-bright-blue;
+    color: @quickdraw-blue;
   }
 
   &.other.attribute-name {
-    color: @gruvbox-bright-purple;
+    color: @quickdraw-purple;
 
     &.id {
-      color: @gruvbox-bright-green;
+      color: @quickdraw-green;
     }
   }
 }
 
 .meta {
   &.class {
-    color: @gruvbox-bright-yellow;
+    color: @quickdraw-yellow;
 
     &.body {
       color: @syntax-fg;
@@ -222,20 +222,20 @@
 
   &.definition {
     &.variable {
-      color: @gruvbox-bright-blue;
+      color: @quickdraw-blue;
     }
   }
 
   &.link {
-    color: @gruvbox-bright-purple;
+    color: @quickdraw-purple;
   }
 
   &.require {
-    color: @gruvbox-bright-green;
+    color: @quickdraw-green;
   }
 
   &.selector {
-    color: @gruvbox-bright-red;
+    color: @quickdraw-red;
   }
 
   &.separator {
@@ -256,40 +256,40 @@
 
 .markup {
   &.bold {
-    color: @gruvbox-bright-purple;
+    color: @quickdraw-purple;
     font-weight: bold;
   }
 
   &.changed {
-    color: @gruvbox-bright-red;
+    color: @quickdraw-red;
   }
 
   &.deleted {
-    color: @gruvbox-bright-blue;
+    color: @quickdraw-blue;
   }
 
   &.italic {
-    color: @gruvbox-bright-red;
+    color: @quickdraw-red;
     font-style: italic;
   }
 
   &.heading .punctuation.definition.heading {
-    color: @gruvbox-bright-green;
+    color: @quickdraw-green;
   }
 
   &.inserted {
-    color: @gruvbox-bright-yellow;
+    color: @quickdraw-yellow;
   }
 
   &.list {
-    color: @gruvbox-bright-blue;
+    color: @quickdraw-blue;
   }
 
   &.quote {
-    color: @gruvbox-bright-purple;
+    color: @quickdraw-purple;
   }
 
   &.raw.inline {
-    color: @gruvbox-bright-yellow;
+    color: @quickdraw-yellow;
   }
 }

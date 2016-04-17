@@ -11,19 +11,19 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/caleb/gruvbox-syntax-atom.git"
+    "url": "git+https://github.com/caleb/quickdraw-syntax-atom.git"
   },
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
-  "readme": "# Gruvbox Syntax Theme for Atom 1.0\n\nA Gruvbox theme for Atom that adheres to the vim theme. Easy on the eyes, beautiful theme.\n\nA big thanks to Isaac Hess for creating the [original Gruvbox theme for Atom](https://github.com/isaachess/gruvbox-atom) on which this is based.\n\nBased on [https://github.com/morhetz/gruvbox](https://github.com/morhetz/gruvbox).\n\n![Screenshot](https://raw.githubusercontent.com/caleb/gruvbox-syntax-atom/master/gruvbox.png)\n",
+  "readme": "# quickdraw Syntax Theme for Atom 1.0\n\nA quickdraw theme for Atom that adheres to the vim theme. Easy on the eyes, beautiful theme.\n\nA big thanks to Isaac Hess for creating the [original quickdraw theme for Atom](https://github.com/isaachess/quickdraw-atom) on which this is based.\n\nBased on [https://github.com/morhetz/quickdraw](https://github.com/morhetz/quickdraw).\n\n![Screenshot](https://raw.githubusercontent.com/caleb/quickdraw-syntax-atom/master/quickdraw.png)\n",
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/caleb/gruvbox-syntax-atom/issues"
+    "url": "https://github.com/caleb/quickdraw-syntax-atom/issues"
   },
-  "homepage": "https://github.com/caleb/gruvbox-syntax-atom#readme",
-  "_id": "gruvbox@1.0.5",
+  "homepage": "https://github.com/caleb/quickdraw-syntax-atom#readme",
+  "_id": "quickdraw@1.0.5",
   "_shasum": "28a18460f21648cba25098fb5ab0e6639b5cff10",
   "_resolved": "file:../d-116317-4759-hz7u3q/package.tgz",
   "_from": "../d-116317-4759-hz7u3q/package.tgz",
