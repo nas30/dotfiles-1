@@ -32,7 +32,7 @@ while true; do
     elif [[ ${updatesTotal} -gt 1 && $updatesOfficialNumber -eq 1 && $updatesAURNumber -eq 1 ]]; then
         updates="There is ${updatesOfficialNumber} official repo update, and ${updatesAURNumber} AUR update available."
     elif [[ ${updatesTotal} -gt 1 && $updatesOfficialNumber -gt 1 && $updatesAURNumber -eq 1 ]]; then
-        updates="There are ${updatesOfficialNumber} official repo updates, ${updatesAURNumber} AUR update available."
+        updates="There are ${updatesOfficialNumber} official repo updates, and ${updatesAURNumber} AUR update available."
     elif [[ ${updatesTotal} -gt 1 && $updatesOfficialNumber -eq 1 && $updatesAURNumber -gt 1 ]]; then
         updates="There is ${updatesOfficialNumber} official repo update, and ${updatesAURNumber} AUR updates available."
     else

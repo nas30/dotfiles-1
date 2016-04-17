@@ -34,7 +34,8 @@ shell sudo rm -R
 shell sudo vim lightdm-webkit-greeter.conf
 shell sudo vim lightdm.conf
 copy
-delete
 cut
 shell mkdir atom
 paste
+rm
+delete
