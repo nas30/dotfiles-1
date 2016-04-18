@@ -73,6 +73,9 @@ echo "Checking dependencies."
 sudo pacman -S --needed --noconfirm base-devel git stow
 
 # Remove old stowed files.
+rm -rf ~/.atom/packages/quickdraw
+rm -rf ~/.atom/config.cson
+rm -rf ~/.atom/styles.less
 rm -rf ~/bin
 rm -rf ~/.config/bspwm
 rm -rf ~/.config/cava
