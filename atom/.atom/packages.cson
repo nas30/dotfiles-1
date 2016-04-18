@@ -1,0 +1,8 @@
+packages: [
+  "file-icons"
+  "minimap"
+  "nucleus-dark-ui"
+  "package-sync"
+  "pigments"
+  "quickdraw"
+]

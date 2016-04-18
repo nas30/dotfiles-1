@@ -1,10 +1,16 @@
 @import "syntax-variables";
+@import "ui-variables";
 
 // Srollbar
 atom-text-editor .vertical-scrollbar,
 atom-text-editor::shadow .vertical-scrollbar {
     opacity: 0;
     width: 0;
+}
+
+// Cursor
+atom-text-editor::shadow .cursor {
+    transition: opacity 0.35s ease-in-out;
 }
 
 // Wrap guide
@@ -14,7 +20,7 @@ atom-text-editor::shadow .wrap-guide {
     background-color: transparent;
 }
 
-// Pigments dot marker
+// Pigments
 atom-text-editor::shadow pigments-markers::shadow pigments-color-marker.dot,
 pigments-markers::shadow pigments-color-marker.dot,
 pigments-color-marker.dot {

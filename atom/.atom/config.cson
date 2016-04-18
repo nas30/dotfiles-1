@@ -21,8 +21,12 @@
     lineHeight: 1.25
     tabLength: 4
     tabType: "soft"
+  "file-icons":
+    coloured: false
   minimap:
     scrollAnimation: true
+  "package-sync":
+    forceOverwrite: true
   pigments:
     markerType: "dot"
     sortPaletteColors: "by color"
