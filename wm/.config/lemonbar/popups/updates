@@ -40,8 +40,8 @@ while true; do
     fi
 
     # Throw a popup every 10 minutes if an update is available.
-    if [[ ${updatesTotal} -gt 0 && $(($(date "+%M") % 10)) -eq 0 ]]; then
+    if [[ ${updatesTotal} -gt 0 ]]; then
     	~/.config/lemonbar/popup-spawner %yellow ${updates}
-        sleep 60
+        sleep 600
     fi
 done
