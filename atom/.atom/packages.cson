@@ -1,5 +1,6 @@
 packages: [
   "file-icons"
+  "indent-guide-improved"
   "minimap"
   "nucleus-dark-ui"
   "package-sync"

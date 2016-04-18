@@ -16,9 +16,11 @@
       "quickdraw"
     ]
   editor:
+    backUpBeforeSaving: true
     fontFamily: "Input Mono"
     fontSize: 15
     lineHeight: 1.25
+    scrollPastEnd: true
     tabLength: 4
     tabType: "soft"
   "file-icons":

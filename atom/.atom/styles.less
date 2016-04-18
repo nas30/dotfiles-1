@@ -1,5 +1,9 @@
+// IMPORTS!
+
 @import "syntax-variables";
 @import "ui-variables";
+
+// EDITOR ELEMENTS!
 
 // Srollbar
 atom-text-editor .vertical-scrollbar,
@@ -13,11 +17,27 @@ atom-text-editor::shadow .cursor {
     transition: opacity 0.35s ease-in-out;
 }
 
+
+// DEFAULT PACKAGES!
+
 // Wrap guide
 atom-text-editor::shadow .wrap-guide {
     border-left: dashed 1px;
     color: @syntax-wrap-guide-color;
     background-color: transparent;
+}
+
+// USER PACKAGES!
+
+// Indent-guide-improved
+.indent-guide-improved {
+  background-color: @syntax-indent-guide-color;
+  &.indent-guide-stack {
+    background-color: @syntax-indent-guide-color;
+    &.indent-guide-active {
+      background-color: @syntax-accent;
+    }
+  }
 }
 
 // Pigments
