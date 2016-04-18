@@ -1,0 +1,46 @@
+#define dark    #20292d
+#define medium  #4c5356
+#define light   #c4c4b5
+
+#define red     #a66959
+#define green   #769070
+#define yellow  #ac8d6e
+#define blue    #607a86
+#define magenta #80757e
+#define cyan    #60867f
+#define orange  #b38359
+
+!!
+
+*.foreground:   light
+*.background:   dark
+*.cursorColor:  light
+
+*.fg: light
+*.bg: dark
+*.hlfg: dark
+*.hlbg: light
+
+*.color0:       dark
+*.color8:       medium
+
+*.color1:       red
+*.color9:       red
+
+*.color2:       green
+*.color10:      green
+
+*.color3:       yellow
+*.color11:      yellow
+
+*.color4:       blue
+*.color12:      blue
+
+*.color5:       magenta
+*.color13:      magenta
+
+*.color6:       cyan
+*.color14:      cyan
+
+*.color7:       light
+*.color15:      light
