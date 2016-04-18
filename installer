@@ -157,7 +157,7 @@ echo "Installing user specified packages."
 
 for ((i=0; i<=$((${#packages[@]} - 1)); i++)); do
     # Only install packages not already on system.
-    if [[ $(pacaur -Q ${packages[i]} | grep "not found") != "" ]]; then
+    if [[ $(pacaur -Qs ${packages[i]}) == "" ]]; then
         pacaur --noedit -S ${packages[i]}
     fi
 done
