@@ -6,7 +6,9 @@ packages=(
     "termite"                           # Terminal emulator.
     "neofetch"                          # Display information about system.
     "txtw-git"                          # Returns text width in pixels.
-    "infinality-bundle"                 # Patches to improve font rendering.
+    "cairo-infinality-ultimate"         # Patches to improve font rendering.
+    "fontconfig-infinality-ultimate"    # Patches to improve font rendering.
+    "freetype2-infinality-ultimate"     # Patches to improve font rendering.
     "wget"                              # Tool for downloading files from the internet.
     "unzip"                             # Tool for extracting zip archives.
     "xclip"                             # Allows manipulation of clipboard from terminal.
@@ -155,7 +157,7 @@ echo "Installing user specified packages."
 
 for ((i=0; i<=$((${#packages[@]} - 1)); i++)); do
     # Only install packages not already on system.
-    if [[ $(pacaur -Q ${packages[i]}) | grep "not found" != "" ]]; then
+    if [[ $(pacaur -Q ${packages[i]} | grep "not found") != "" ]]; then
         pacaur --noedit -S ${packages[i]}
     fi
 done
