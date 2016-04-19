@@ -1,46 +1,51 @@
-// IMPORTS!
-
 @import "syntax-variables";
 @import "ui-variables";
 
-// EDITOR ELEMENTS!
-
-// Srollbar
+// Remove scrollbar.
 atom-text-editor .vertical-scrollbar,
 atom-text-editor::shadow .vertical-scrollbar {
     opacity: 0;
     width: 0;
 }
 
-// Cursor
+// Pulse cursor instead of blink.
 atom-text-editor::shadow .cursor {
     transition: opacity 0.35s ease-in-out;
 }
 
+// Remove extra decorations from removed git gutter.
+atom-text-editor::shadow .line-number.git-line-removed::after,
+atom-text-editor::shadow .gutter .line-number.git-line-removed:before {
+    border: none;
+}
 
-// DEFAULT PACKAGES!
+// Only show invisible characters when selected.
+atom-text-editor::shadow .invisible-character {
+    color: @syntax-background-color;
+}
+atom-text-editor::shadow .cursor-line .invisible-character {
+  color: transparent;
+}
 
-// Wrap guide
+// Make wrap-guide dashed and more subtle.
 atom-text-editor::shadow .wrap-guide {
     border-left: dashed 1px;
     color: @syntax-wrap-guide-color;
     background-color: transparent;
 }
 
-// USER PACKAGES!
-
-// Indent-guide-improved
+// Change colors of indent-guide-improved to match syntax theme.
 .indent-guide-improved {
-  background-color: @syntax-indent-guide-color;
-  &.indent-guide-stack {
     background-color: @syntax-indent-guide-color;
-    &.indent-guide-active {
-      background-color: @syntax-accent;
+    &.indent-guide-stack {
+        background-color: @syntax-indent-guide-color;
+        &.indent-guide-active {
+            background-color: mix(@syntax-indent-guide-color, @syntax-text-color, 50);
+        }
     }
-  }
 }
 
-// Pigments
+// Make pigments dots smaller.
 atom-text-editor::shadow pigments-markers::shadow pigments-color-marker.dot,
 pigments-markers::shadow pigments-color-marker.dot,
 pigments-color-marker.dot {
