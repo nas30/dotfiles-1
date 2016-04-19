@@ -26,6 +26,10 @@ super + shift + {Left, Down, Up, Right}
 super + ctrl + {Left, Down, Up, Right}
     bspc node -p {west, south, north, east}
 
+# Change ratio of node preselectoin.
+super + ctrl + {1-9}
+    bspc node -o 0.{1-9}
+
 # Cancel node preselection.
 super + ctrl + Escape
     bspc node -p cancel
