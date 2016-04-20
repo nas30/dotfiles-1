@@ -13,7 +13,7 @@ atom-text-editor::shadow .cursor {
     transition: opacity 0.35s ease-in-out;
 }
 
-// Remove extra decorations from removed git gutter.
+// Remove extra decorations from git diffs in gutter.
 atom-text-editor::shadow .line-number.git-line-removed::after,
 atom-text-editor::shadow .gutter .line-number.git-line-removed:before {
     border: none;
@@ -25,6 +25,21 @@ atom-text-editor::shadow .invisible-character {
 }
 atom-text-editor::shadow .cursor-line .invisible-character {
   color: transparent;
+}
+
+// Replace fold marker with a dashed line.
+atom-text-editor::shadow .line .fold-marker::before {
+  content: "";
+  border-bottom: 1px dashed @syntax-color-renamed;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: block;
+}
+atom-text-editor .fold-marker:after,
+atom-text-editor::shadow .fold-marker:after,
+:host .fold-marker:after {
+    color: transparent
 }
 
 // Make wrap-guide dashed and more subtle.
