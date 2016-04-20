@@ -4,9 +4,7 @@
   "version": "1.0.0",
   "description": "A theme for atom that is quick and simple to configure",
   "keywords": [
-    "dark",
-    "green",
-    "orange",
+    "modular",
     "syntax"
   ],
   "repository": {
