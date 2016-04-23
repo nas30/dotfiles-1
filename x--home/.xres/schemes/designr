@@ -16,11 +16,6 @@
 *.background:   dark
 *.cursorColor:  light
 
-*.fg: light
-*.bg: dark
-*.hlfg: dark
-*.hlbg: light
-
 *.color0:       dark
 *.color8:       medium
 
