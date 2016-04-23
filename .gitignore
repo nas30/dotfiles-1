@@ -1,6 +1,25 @@
+# Squigle.
 *~
 
+# ---
+
+# Ignore linux specific files.
 .fuse_hidden*
 .Trash-*
 
-/ranger/.config/ranger/bookmarks
+# ---
+
+# Ignore all files in atom folder
+atom--home/.atom/*
+
+# Except for config files.
+!atom--home/.atom/config.cson
+!atom--home/.atom/packages.cson
+!atom--home/.atom/styles.less
+
+# Except for packages
+!atom--home/.atom/packages
+
+# Except for the quickdraw package.
+atom--home/.atom/packages/*
+!atom--home/.atom/packages/quickdraw

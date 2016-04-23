@@ -62,7 +62,6 @@ stows=(
     "pacaur--home"
     "pacman--root"
     "qutebrowser--home"
-    "ranger--home"
     "termite--home"
     "wallpaper--home"
     "wm--home"
@@ -79,38 +78,37 @@ sudo pacman -S --needed --noconfirm base-devel git stow
 
 # Remove old stowed files.
 sudo rm -rf /etc/pacman.conf
-sudo rm -rf ~/bin
-sudo rm -rf ~/.atom
-sudo rm -rf ~/.config/bspwm
-sudo rm -rf ~/.config/cava
-sudo rm -rf ~/.config/compton
-sudo rm -rf ~/.config/lemonbar
-sudo rm -rf ~/.config/neofetch
-sudo rm -rf ~/.config/pacaur
-sudo rm -rf ~/.config/qutebrowser
-sudo rm -rf ~/.config/ranger
-sudo rm -rf ~/.config/sxhkd
-sudo rm -rf ~/.config/termite
-sudo rm -rf ~/.fonts
-sudo rm -rf ~/.universal
-sudo rm -rf ~/.wallpaper
-sudo rm -rf ~/.xinitrc
-sudo rm -rf ~/.Xresources
-sudo rm -rf ~/.zlogin
-sudo rm -rf ~/.zsh
-sudo rm -rf ~/.zshrc
+rm -rf ~/bin
+rm -rf ~/.atom
+rm -rf ~/.config/bspwm
+rm -rf ~/.config/cava
+rm -rf ~/.config/compton
+rm -rf ~/.config/lemonbar
+rm -rf ~/.config/neofetch
+rm -rf ~/.config/pacaur
+rm -rf ~/.config/qutebrowser
+rm -rf ~/.config/sxhkd
+rm -rf ~/.config/termite
+rm -rf ~/.fonts
+rm -rf ~/.universal
+rm -rf ~/.wallpaper
+rm -rf ~/.xinitrc
+rm -rf ~/.Xresources
+rm -rf ~/.zlogin
+rm -rf ~/.zsh
+rm -rf ~/.zshrc
 
 # Install stowed files from array.
 echo "Installing dotfiles."
 
-for ((i=0; i<=$((${#stows[@]} - 1)); i++)); do
-    if [[ $(echo ${stows[i]} | grep "\--home") != "" ]]; then
-        stow -d ~/dotfiles -t ~ ${stows[i]}
+for i in ${stows[@]}; do
+    if [[ $(echo ${i} | grep "\--home") != "" ]]; then
+        stow -d ~/dotfiles -t ~ ${i}
     else
-        sudo stow -d ~/dotfiles -t / ${stows[i]}
+        sudo stow -d ~/dotfiles -t / ${i}
     fi
 
-    echo "${stows[i]} installed."
+    echo "${i} installed."
 done
 
 # Increase the size of the /tmp directory to be able build the large array of packages.
@@ -156,12 +154,12 @@ rm -rf "$buildroot"
 # Install packages from array.
 echo "Installing user specified packages."
 
-for ((i=0; i<=$((${#packages[@]} - 1)); i++)); do
+for i in ${packages[@]}; do
     # Only install packages not already on system.
-    if [[ $(pacaur -Qs ${packages[i]}) == "" ]]; then
-        pacaur --noedit -S ${packages[i]}
+    if [[ $(pacaur -Qs ${i}) == "" ]]; then
+        pacaur --noedit -S ${i}
         rm -rf ~/.cache
-        echo "Package ${packages[i]} installed."
+        echo "Package ${i} installed."
     fi
 done
 
