@@ -73,10 +73,9 @@ stows=(
 sudo -v
 
 # Make sure script dependencies are installed.
-echo "Checking dependencies."
 sudo pacman -S --needed --noconfirm base-devel git stow
 
-# Remove old stowed files.
+# Remove old, conflicting files.
 sudo rm -rf /etc/pacman.conf
 rm -rf ~/bin
 rm -rf ~/.atom
@@ -99,74 +98,62 @@ rm -rf ~/.zsh
 rm -rf ~/.zshrc
 
 # Install stowed files from array.
-echo "Installing dotfiles."
-
 for i in ${stows[@]}; do
     if [[ $(echo ${i} | grep "\--home") != "" ]]; then
         stow -d ~/dotfiles -t ~ ${i}
-    else
+    elif [[ $(echo ${i} | grep "\--root") != "" ]]; then
         sudo stow -d ~/dotfiles -t / ${i}
     fi
 
-    echo "${i} installed."
+    echo "${i} stow installed."
 done
 
 # Increase the size of the /tmp directory to be able build the large array of packages.
 sudo mount -o remount,size=4G,noatime /tmp
 
-# Fetch keys needed to verify cower and infinality.
-echo "Fetching package keys."
+# Fetch cower key.
+gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 487EACC08557AD082088DABA1EB2638FF56C0C53
 
-    # Cower key.
-    gpg --keyserver hkp://pool.sks-keyservers.net --recv-keys 487EACC08557AD082088DABA1EB2638FF56C0C53
+# Fetch infinality key.
+sudo pacman-key -r 962DDE58
+sudo pacman-key -f 962DDE58
+sudo pacman-key --lsign-key 962DDE58
 
-    # Infinality key.
-    sudo pacman-key -r 962DDE58
-    sudo pacman-key -f 962DDE58
-    sudo pacman-key --lsign-key 962DDE58
+# Refresh all keys.
+sudo pacman-key --refresh-keys
 
-    # Refresh all keys.
-    sudo pacman-key --refresh-keys
+# Synchronize repositories.
+sudo pacman -Sy
 
-    # Synchronize repositories.
-    sudo pacman -Sy
+# Build AUR helper if it is not already installed.
+if [[ $(pacman -Qs pacaur) == "" ]]; then
+    buildRoot="/tmp/buildroot"
 
-# Build AUR helper.
-echo "Building AUR helper."
+    mkdir -p "${buildRoot}"
+    cd "${buildRoot}" || exit 1
 
-buildroot="$(mktemp -d)"
+    git clone "https://aur.archlinux.org/cower.git"
+    git clone "https://aur.archlinux.org/pacaur.git"
 
-mkdir -p "$buildroot"
-cd "$buildroot" || exit 1
+    cd "${buildRoot}/cower" || exit 1
+    makepkg --syncdeps --install --noconfirm
 
-git clone "https://aur.archlinux.org/cower.git"
-git clone "https://aur.archlinux.org/pacaur.git"
+    cd "${buildRoot}/pacaur" || exit 1
+    makepkg --syncdeps --install --noconfirm
 
-cd "${buildroot}/cower" || exit 1
-makepkg --syncdeps --install --noconfirm
+    cd ~ || exit 1
+    rm -rf "${buildRoot}"
+fi
 
-cd "${buildroot}/pacaur" || exit 1
-makepkg --syncdeps --install --noconfirm
-
-cd "$HOME" || exit 1
-rm -rf "$buildroot"
-
-# Install packages from array.
-echo "Installing user specified packages."
-
+# Install packages from array that are not already installed.
 for i in ${packages[@]}; do
-    # Only install packages not already on system.
-    if [[ $(pacaur -Qs ${i}) == "" ]]; then
+    if [[ $(pacman -Qs ${i}) == "" ]]; then
         pacaur --noedit -S ${i}
-        rm -rf ~/.cache
-        echo "Package ${i} installed."
     fi
 done
 
 # Change user shell.
-echo "Changing user shell."
 sudo chsh -s /bin/zsh $(whoami)
 
 # Remove any orphanated packages.
-echo "Removing orphanated packages."
 sudo pacman -Rns $(pacman -Qtdq)
