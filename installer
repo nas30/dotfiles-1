@@ -2,48 +2,49 @@
 
 # Array of packages to install.
 packages=(
-    # Basic packages
+    # Basic Packages
     "termite"                           # Terminal emulator.
     "neofetch"                          # Display information about system.
-    "txtw-git"                          # Returns text width in pixels.
     "cairo-infinality-ultimate"         # Patches to improve font rendering.
     "fontconfig-infinality-ultimate"    # Patches to improve font rendering.
     "freetype2-infinality-ultimate"     # Patches to improve font rendering.
     "wget"                              # Tool for downloading files from the internet.
     "unzip"                             # Tool for extracting zip archives.
+    "unrar"                             # Tool for extracting rar archives.
     "xclip"                             # Allows manipulation of clipboard from terminal.
 
-    # Editing tools
+    # Text Editor Packages
     "atom-editor"                       # Hackable text editor.
     "gvfs"                              # Used by atom to delete files.
 
-    # Programming tools.
+    # Programming Packages.
     "jdk"                               # Oracle Java development kit.
 
-    # Shell tools
+    # Shell Packages
     "zsh"                               # Bash shell replacement.
     "zsh-syntax-highlighting"           # Syntax highlighting plugin for zsh.
 
-    # Internet
+    # Internet Packages
     "firefox"                           # Web browser.
     "emojione-color-font"               # Font to display emoji in firefox.
     "qutebrowser"                       # Small web browser for encapsuling web apps.
     "dropbox"                           # Cloud storage.
     "dropbox-cli"                       # Terminal interface for dropbox.
 
-    # Window management
+    # Window Management Packages
     "bspwm"                             # Window manager.
     "sxhkd"                             # Hotkey daemon.
     "lemonbar-xft-git"                  # Panel displayer.
+    "txtw-git"                          # Returns text width in pixels.
     "compton"                           # Compositer.
     "rofi"                              # Program run menu.
 
-    # Image realted
+    # Image Packages
     "feh"                               # Image viewer / wallpaper setter.
     "scrot"                             # Screenshot tool.
     "imagemagick"                       # Terminal image manipulation.
 
-    # Music related
+    # Music Packages
     "spotify"                           # Music streaming service.
     "playerctl"                         # Music control tool.
     "cava-git"                          # Terminal music visualizer.
