@@ -4,7 +4,7 @@
 . ~/.config/lemonbar/.config
 
 # Create switchable desktops.
-bspc monitor -d One Two Three Four Five
+bspc monitor -d One Two Three Four
 
 # Per desktop sizing.
 for desktop in $(bspc query -D); do
