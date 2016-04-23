@@ -56,15 +56,17 @@ packages=(
 stows=(
     "atom--home"
     "bin--home"
+    "bspwm--home"
     "cava--home"
+    "compton--home"
     "fonts--home"
+    "lemonbar--home"
     "neofetch--home"
     "pacaur--home"
     "pacman--root"
     "qutebrowser--home"
     "termite--home"
     "wallpaper--home"
-    "wm--home"
     "x--home"
     "zsh--home"
 )
