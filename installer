@@ -18,7 +18,7 @@ packages=(
     "atom-editor-beta"                  # Hackable text editor.
     "gvfs"                              # Used by atom to delete files.
 
-    # Programming Packages.
+    # Programming Packages
     "jdk"                               # Oracle Java development kit.
 
     # Shell Packages
@@ -52,21 +52,22 @@ packages=(
     "ponymix"                           # Volume control tool.
 )
 
-# Array of stows to be installed to the home folder, some stows require special instructions.
-homeStows=(
-    "atom"
-    "bin"
-    "cava"
-    "fonts"
-    "neofetch"
-    "pacaur"
-    "qutebrowser"
-    "ranger"
-    "termite"
-    "wallpaper"
-    "wm"
-    "x"
-    "zsh"
+# Array of stows to install.
+stows=(
+    "atom--home"
+    "bin--home"
+    "cava--home"
+    "fonts--home"
+    "neofetch--home"
+    "pacaur--home"
+    "pacman--root"
+    "qutebrowser--home"
+    "ranger--home"
+    "termite--home"
+    "wallpaper--home"
+    "wm--home"
+    "x--home"
+    "zsh--home"
 )
 
 # Ask for user password only once.
@@ -75,6 +76,42 @@ sudo -v
 # Make sure script dependencies are installed.
 echo "Checking dependencies."
 sudo pacman -S --needed --noconfirm base-devel git stow
+
+# Remove old stowed files.
+sudo rm -rf /etc/pacman.conf
+sudo rm -rf ~/bin
+sudo rm -rf ~/.atom
+sudo rm -rf ~/.config/bspwm
+sudo rm -rf ~/.config/cava
+sudo rm -rf ~/.config/compton
+sudo rm -rf ~/.config/lemonbar
+sudo rm -rf ~/.config/neofetch
+sudo rm -rf ~/.config/pacaur
+sudo rm -rf ~/.config/qutebrowser
+sudo rm -rf ~/.config/ranger
+sudo rm -rf ~/.config/sxhkd
+sudo rm -rf ~/.config/termite
+sudo rm -rf ~/.fonts
+sudo rm -rf ~/.universal
+sudo rm -rf ~/.wallpaper
+sudo rm -rf ~/.xinitrc
+sudo rm -rf ~/.Xresources
+sudo rm -rf ~/.zlogin
+sudo rm -rf ~/.zsh
+sudo rm -rf ~/.zshrc
+
+# Install stowed files from array.
+echo "Installing dotfiles."
+
+for ((i=0; i<=$((${#stows[@]} - 1)); i++)); do
+    if [[ $(echo ${stows[i]} | grep "\--home") != "" ]]; then
+        stow -d ~/dotfiles -t ~ ${stows[i]}
+    else
+        sudo stow -d ~/dotfiles -t / ${stows[i]}
+    fi
+
+    echo "${stows[i]} installed."
+done
 
 # Increase the size of the /tmp directory to be able build the large array of packages.
 sudo mount -o remount,size=4G,noatime /tmp
@@ -122,7 +159,7 @@ echo "Installing user specified packages."
 for ((i=0; i<=$((${#packages[@]} - 1)); i++)); do
     # Only install packages not already on system.
     if [[ $(pacaur -Qs ${packages[i]}) == "" ]]; then
-        pacaur --noedit --noconfirm -S ${packages[i]}
+        pacaur --noedit -S ${packages[i]}
         rm -rf ~/.cache
         echo "Package ${packages[i]} installed."
     fi
@@ -135,39 +172,3 @@ sudo chsh -s /bin/zsh $(whoami)
 # Remove any orphanated packages.
 echo "Removing orphanated packages."
 sudo pacman -Rns $(pacman -Qtdq)
-
-# Remove old stowed files.
-rm -rf ~/bin
-rm -rf ~/.atom
-rm -rf ~/.config/bspwm
-rm -rf ~/.config/cava
-rm -rf ~/.config/compton
-rm -rf ~/.config/lemonbar
-rm -rf ~/.config/neofetch
-rm -rf ~/.config/pacaur
-rm -rf ~/.config/qutebrowser
-rm -rf ~/.config/ranger
-rm -rf ~/.config/sxhkd
-rm -rf ~/.config/termite
-rm -rf ~/.fonts
-rm -rf ~/.universal
-rm -rf ~/.wallpaper
-rm -rf ~/.xinitrc
-rm -rf ~/.Xresources
-rm -rf ~/.zlogin
-rm -rf ~/.zsh
-rm -rf ~/.zshrc
-
-# Install stowed files from array.
-echo "Installing dotfiles."
-
-for ((i=0; i<=$((${#homeStows[@]} - 1)); i++)); do
-    stow -d ~/dotfiles -t ~ ${homeStows[i]}
-    echo "Dotfiles for ${homeStows[i]} installed."
-done
-
-    # Install stowed files which have special conditions.
-    # Pacman
-    sudo rm -rf /etc/pacman.conf
-    sudo stow -d ~/dotfiles -t / pacman--root
-    echo "Dotfiles for pacman installed."
