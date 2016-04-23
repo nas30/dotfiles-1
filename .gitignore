@@ -1,0 +1,6 @@
+*~
+
+.fuse_hidden*
+.Trash-*
+
+/ranger/.config/ranger/bookmarks
