@@ -2,6 +2,10 @@
 
 # Array of packages to install.
 packages=(
+    # Shell Packages
+    "zsh"                               # Bash shell replacement.
+    "zsh-syntax-highlighting"           # Syntax highlighting plugin for zsh.
+
     # Basic Packages
     "termite"                           # Terminal emulator.
     "ranger"                            # File explorer.
@@ -12,25 +16,8 @@ packages=(
     "wget"                              # Tool for downloading files from the internet.
     "unzip"                             # Tool for extracting zip archives.
     "unrar"                             # Tool for extracting rar archives.
+    "p7zip"                             # Tool for extracting 7z archives.
     "xclip"                             # Allows manipulation of clipboard from terminal.
-
-    # Text Editor Packages
-    "atom-editor-beta"                  # Hackable text editor.
-    "gvfs"                              # Used by atom to delete files.
-
-    # Programming Packages
-    "jdk"                               # Oracle Java development kit.
-
-    # Shell Packages
-    "zsh"                               # Bash shell replacement.
-    "zsh-syntax-highlighting"           # Syntax highlighting plugin for zsh.
-
-    # Internet Packages
-    "google-chrome-dev"                 # Web browser.
-    "emojione-color-font"               # Font to display emoji in firefox.
-    "qutebrowser"                       # Small web browser for encapsuling web apps.
-    "dropbox"                           # Cloud storage.
-    "dropbox-cli"                       # Terminal interface for dropbox.
 
     # Window Management Packages
     "bspwm"                             # Window manager.
@@ -40,16 +27,33 @@ packages=(
     "compton"                           # Compositer.
     "rofi"                              # Program run menu.
 
-    # Image Packages
+    # Text Editor Packages
+    "atom-editor-beta"                  # Hackable text editor.
+    "gvfs"                              # Used by atom to delete files.
+
+    # Programming Packages
+    "jdk"                               # Oracle Java development kit.
+
+    # Internet Packages
+    "google-chrome-dev"                 # Web browser.
+    "emojione-color-font"               # Font to display emoji in firefox.
+    "qutebrowser"                       # Small web browser for encapsuling web apps.
+    "dropbox"                           # Cloud storage.
+    "dropbox-cli"                       # Terminal interface for dropbox.
+
+    # Imaging Packages
     "feh"                               # Image viewer / wallpaper setter.
     "scrot"                             # Screenshot tool.
     "imagemagick"                       # Terminal image manipulation.
 
     # Music Packages
-    "spotify"                           # Music streaming service.
+    "spotify-beta"                      # Music streaming service.
     "playerctl"                         # Music control tool.
     "cava-git"                          # Terminal music visualizer.
     "ponymix"                           # Volume control tool.
+
+    # Gaming Packages
+    "steam"                             # You know, steam.
 )
 
 # Array of stows to install.

@@ -8,6 +8,15 @@ All packages explained below are included in the `installer` file, but can be co
 
 ---
 
+## Shell Packages
+##### Zsh
+I saw someone using this shell and they had some really cool configs, so I stole them. It has some nice features like native tab completion as well as themeing for the prompt.
+
+##### Zsh-Syntax-Highlighting
+This is mostly for aesthetics, since I only use the terminal for executing simple commands. Useful for those who like to make long strings of commands and cannot find mistakes just by glancing at some plain-colored text.
+
+---
+
 ## Basic Packages
 ##### Termite
 My terminal emulator of choice. Config file is a bit annoying to take care of, because it gives me one more place where I need to manage color schemes. A positive though, is that it easily handles fonts such as [Font Awesome](https://fortawesome.github.io/Font-Awesome/).
@@ -32,6 +41,11 @@ Used for manipulating the clipboard. Really nice for storing image files like sc
 
 ---
 
+## Window Management Packages
+##### Lazyness
+
+---
+
 ## Text Editor Packages
 ##### Atom
 Nice text editor. It is based on chrome, so anyone that knows web development can easily hack it. I only somewhat know what I'm doing with that. I guess that's why it's called hacking.
@@ -47,12 +61,20 @@ I've been trying to learn Java. Having the development kit is necessary for that
 
 ---
 
-## Shell Packages
-##### Zsh
-I saw someone using this shell and they had some really cool configs, so I stole them. It has some nice features like native tab completion as well as themeing for the prompt.
-
-##### Zsh-Syntax-Highlighting
-This is mostly for aesthetics, since I only use the terminal for executing simple commands. Useful for those who like to make long strings of commands and cannot find mistakes just by glancing at some plain-colored text.
-
 ## Internet Packages
-##### I'll add more to this readme later, I now realize why I took so long to start writing it, it's a lot of work to do.
+##### Lazyness
+
+---
+
+## Imaging Packages
+##### Lazyness
+
+---
+
+## Music Packages
+##### Lazyness
+
+---
+
+## Gaming Packages
+##### Lazyness
