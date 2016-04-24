@@ -23,3 +23,8 @@ atom--home/.atom/*
 # Except for the quickdraw package.
 atom--home/.atom/packages/*
 !atom--home/.atom/packages/quickdraw
+
+# ---
+
+# Ignore changing wallpaper
+wallpaper--home/.wallpaper/tiled/tweed.png

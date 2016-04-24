@@ -34,6 +34,8 @@ bspc rule -a Steam state=floating follow=off
 #fi
 
 # Set wallpaper.
+wallpaperColor=$(echo ${blue} | tr -d "#")
+curl -o ~/.wallpaper/tiled/tweed.png "http://bg.siteorigin.com/image/generate/download?color=%23${wallpaperColor}&pattern=45degreee_fabric&blend=38&intensity=40.00&noise=0"
 feh --bg-tile ~/.wallpaper/tiled/tweed.png
 
 # Start background programs.
