@@ -7,7 +7,7 @@ packages=(
     "zsh-syntax-highlighting"           # Syntax highlighting plugin for zsh.
 
     # Basic Packages
-    "termite"                           # Terminal emulator.
+    "rxvt-unicode-256xresources"        # Terminal emulator.
     "ranger"                            # File explorer.
     "neofetch"                          # Display information about system.
     "cairo-infinality-ultimate"         # Patches to improve font rendering.
@@ -69,7 +69,8 @@ stows=(
     "pacaur--home"
     "pacman--root"
     "qutebrowser--home"
-    "termite--home"
+    "rofi--home"
+    "urxvt--home"
     "wallpaper--home"
     "x--home"
     "zsh--home"
@@ -98,6 +99,7 @@ rm -rf ~/.fonts
 rm -rf ~/.universal
 rm -rf ~/.wallpaper
 rm -rf ~/.xinitrc
+rm -rf ~/.xres
 rm -rf ~/.Xresources
 rm -rf ~/.zlogin
 rm -rf ~/.zsh
