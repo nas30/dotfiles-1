@@ -1,6 +1,6 @@
-# Reload window manager modules.
+# Reload keyboard daemon.
 super + shift + r
-	pkill -USR1 -x sxhkd && xrdb -load ~/.Xresources
+	pkill -USR1 -x sxhkd
 
 # Quit the current X session.
 super + shift + Escape
