@@ -94,7 +94,6 @@ rm -rf ~/.config/neofetch
 rm -rf ~/.config/pacaur
 rm -rf ~/.config/qutebrowser
 rm -rf ~/.config/sxhkd
-rm -rf ~/.config/termite
 rm -rf ~/.fonts
 rm -rf ~/.universal
 rm -rf ~/.wallpaper
