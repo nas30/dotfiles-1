@@ -4,33 +4,43 @@
 . ~/.config/lemonbar/.config
 
 # Determine if a color has been specified by the popup command.
-case $1 in
-    %black)     popupBackground=$black; popupForeground=$foreground ;;
-    %grey)      popupBackground=$grey; popupForeground=$background ;;
-    %red)       popupBackground=$red; popupForeground=$background ;;
-    %green)     popupBackground=$green; popupForeground=$background ;;
-    %yellow)    popupBackground=$yellow; popupForeground=$background ;;
-    %blue)      popupBackground=$blue; popupForeground=$background ;;
-    %magenta)   popupBackground=$magenta; popupForeground=$background ;;
-    %cyan)      popupBackground=$cyan; popupForeground=$background ;;
-    %white)     popupBackground=$white; popupForeground=$background ;;
-    *)          popupBackground=$background; popupForeground=$foreground ;;  # Default case
-esac
+while getopts ":c:d:s:" opt; do
+    case $opt in
+        c) colorArg=${OPTARG} ;;
+        d) durationArg=${OPTARG} ;;
+        s) stringArg=${OPTARG} ;;
+    esac
+done
 
-# Select the appropriate string based on if a color has been specified.
-if [[ $1 == "%black" || $1 == "%grey" || $1 == "%red" || $1 == "%green" || $1 == "%yellow" || $1 == "%blue" || $1 == "%magenta" || $1 == "%cyan" || $1 == "%white" ]]; then
-    string=${@:2}
+if [[ "${colorArg}" == "black" ]]; then
+    popupBackground=$black; popupForeground=$foreground
+elif [[ "${colorArg}" == "grey" ]]; then
+    popupBackground=$grey; popupForeground=$background
+elif [[ "${colorArg}" == "red" ]]; then
+    popupBackground=$red; popupForeground=$background
+elif [[ "${colorArg}" == "green" ]]; then
+    popupBackground=$green; popupForeground=$background
+elif [[ "${colorArg}" == "yellow" ]]; then
+    popupBackground=$yellow; popupForeground=$background
+elif [[ "${colorArg}" == "blue" ]]; then
+    popupBackground=$blue; popupForeground=$background
+elif [[ "${colorArg}" == "magenta" ]]; then
+    popupBackground=$magenta; popupForeground=$background
+elif [[ "${colorArg}" == "cyan" ]]; then
+    popupBackground=$cyan; popupForeground=$background
+elif [[ "${colorArg}" == "white" ]]; then
+    popupBackground=$white; popupForeground=$background
 else
-    string=$@
+    popupBackground=$background; popupForeground=$foreground
+fi
+
+if [[ ${durationArg} -le 0 ]]; then
+    durationArg=3
 fi
 
 # Determine the duration of a popup based on length of the string.
 # Calculations based on the assumption of the width of 5 spaces being equal to one word, and a reading rate of 200 words per minute.
-stringWidth=$(($(txtw -f "${font}" -s ${fontSize} "${string}")))
-averageWordWidth=$(txtw -f "${font}" -s ${fontSize} "     ")
-approximateNumberOfWords=$((${stringWidth} / ${averageWordWidth}))
-
-popupDuration=$(((${approximateNumberOfWords} / 3) + 3))
+stringWidth=$(($(txtw -s ${fontSize} "${stringArg}")))
 
 # Determine the width of a popup based on the length of the string.
 popupWidth=$((${stringWidth} * 2))
@@ -41,4 +51,4 @@ popupX=${panelX}
 popupY=$((${panelHeight} * 2))
 
 # Create a popup from whatever information is piped into this script.
-(echo "%{c}${string}"; sleep ${popupDuration}) | lemonbar -g ${popupWidth}x${popupHeight}+${popupX}+${popupY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${popupBackground}" -F "${popupForeground}" -d
+(echo "%{c}${stringArg}"; sleep ${durationArg}) | lemonbar -g ${popupWidth}x${popupHeight}+${popupX}+${popupY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${popupBackground}" -F "${popupForeground}" -d

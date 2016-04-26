@@ -9,7 +9,7 @@ if [[ -d /sys/class/power_supply/BAT0 ]]; then
 
         # Determine battery icon based on capacity and state.
         if [[ "${batteryState}" == "Discharging" && ${batteryPower} -le 20 ]]; then
-            ~/.config/lemonbar/popup-spawner %red Battery power is low! Currently, it is at ${batteryPower} percent!
+            ~/.config/lemonbar/popup-spawner -c red -s "Battery power is low! Currently, it is at ${batteryPower} percent!"
             sleep 300
         fi
     done

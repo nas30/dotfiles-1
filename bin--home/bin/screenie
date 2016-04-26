@@ -17,7 +17,7 @@ xclip -selection clipboard -t "${filetype}" < "${image}"
 
 # Throw popup on success of screenshot.
 if [[ -e ${image} ]]; then
-    ~/.config/lemonbar/popup-spawner %green Screenshot was taken successfully.
+    ~/.config/lemonbar/popup-spawner -c green -s "Screenshot was taken successfully."
 else
-    ~/.config/lemonbar/popup-spawner %red Screenshot failed.
+    ~/.config/lemonbar/popup-spawner -c red -s "Screenshot failed."
 fi
