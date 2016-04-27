@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Import the universal config.
+. ~/.universal
+
+# Figure out how to make padding equal to "screenHeight / 2.25"
+
+rofi -show run \
+-opacity 95 \
+-hide-scrollbar \
+-separator-style none \
+-bw 0 \
+-lines 3 \
+-eh 2 \
+-font "${monoFont} 12" \
+-width ${screenWidth} \
+-padding 480 \
+-color-enabled \
+-color-window "${background}, ${foreground}, ${foreground}" \
+-color-normal "${background}, ${foreground}, ${background}, ${foreground}, ${background}"

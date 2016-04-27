@@ -16,3 +16,9 @@ white=$(xrdb -query | grep -i color15 | tail -c 8)
 # Screen resolution.
 screenWidth=$(xrandr | awk '/Screen 0/ {print $8}')
 screenHeight=$(xrandr | awk '/Screen 0/ {print $10}' | tr -d ",")
+
+# Fonts
+fontSize=10
+font="InputSans"
+monoFont="InputMono"
+iconFont="FontAwesome"

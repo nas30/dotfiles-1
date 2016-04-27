@@ -1,3 +1,2 @@
 #include ".xres/schemes/eclectic"
-#include ".xres/rofi"
 #include ".xres/urxvt"

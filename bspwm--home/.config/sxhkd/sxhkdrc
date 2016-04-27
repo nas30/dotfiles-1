@@ -46,7 +46,7 @@ super + {1, 2, 3, 4}
 
 # Open the program launcher.
 super + Return
-    rofi -show run
+    bash ~/.config/rofi/rofi-wrapper
 
 # Take screenshot.
 Print
