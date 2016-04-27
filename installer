@@ -65,6 +65,7 @@ stows=(
     "compton--home"
     "fonts--home"
     "lemonbar--home"
+    "misc--home"
     "neofetch--home"
     "pacaur--home"
     "pacman--root"
