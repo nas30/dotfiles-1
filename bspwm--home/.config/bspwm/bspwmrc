@@ -20,9 +20,9 @@ bspc config bottom_padding $((${gapSize} * 3))
 bspc config split_ratio 0.50
 
 # Colors.
-bspc config focused_border_color "${foreground}"
+bspc config focused_border_color "${accent}"
 bspc config normal_border_color "${background}"
-bspc config presel_feedback_color "${magenta}"
+bspc config presel_feedback_color "${accent}"
 
 # Program rules.
 bspc rule -a Steam state=floating follow=off

@@ -90,7 +90,6 @@ rm -rf ~/.atom
 rm -rf ~/.config/bspwm
 rm -rf ~/.config/cava
 rm -rf ~/.config/compton
-rm -rf ~/.config/lemonbar
 rm -rf ~/.config/neofetch
 rm -rf ~/.config/pacaur
 rm -rf ~/.config/qutebrowser
@@ -133,7 +132,7 @@ sudo pacman-key --refresh-keys
 # Synchronize repositories.
 sudo pacman -Sy
 
-# Build AUR helper if it is not already installed.
+# Build manual packages.
 if [[ $(pacman -Qs pacaur) == "" ]]; then
     buildRoot="/tmp/buildroot"
 
@@ -142,12 +141,17 @@ if [[ $(pacman -Qs pacaur) == "" ]]; then
 
     git clone "https://aur.archlinux.org/cower.git"
     git clone "https://aur.archlinux.org/pacaur.git"
+    git clone "https://github.com/dark-yux/bar.git"
 
     cd "${buildRoot}/cower" || exit 1
     makepkg --syncdeps --install --noconfirm
 
     cd "${buildRoot}/pacaur" || exit 1
     makepkg --syncdeps --install --noconfirm
+
+    cd "${buildRoot}/pacaur" || exit 1
+    make
+    sudo mv lemonbar /bin
 
     cd ~ || exit 1
     rm -rf "${buildRoot}"

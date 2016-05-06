@@ -34,5 +34,5 @@ desktops(){
 # Pipe functions to the bar infinitely.
 while true; do
 	echo "%{c}$(desktops)"
-done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${bottomPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d | \
+done | lemonbar -g $((${panelWidth} - ($borderSize * 2)))x$((${panelHeight} - ($borderSize * 2)))+${panelX}+${bottomPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -r "${borderSize}" -R "${background}" -B "${background}" -p -d | \
     while true; do read line; eval $line; done &
