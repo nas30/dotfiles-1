@@ -128,6 +128,6 @@ status(){
 
 # Pipe functions to the bar infinitely.
 while true; do
+    sleep ${sleepTime}
 	echo "%{c}$(status)"
-done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d | \
-    while true; do read line; eval $line; done &
+done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d

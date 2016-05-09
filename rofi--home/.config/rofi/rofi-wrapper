@@ -4,9 +4,8 @@
 . ~/.universal
 
 # Figure out how to make padding calculated. It should be whatever screen height is left after subtracting rofi's size.
-
 rofi -show run \
--opacity 95 \
+-opacity 90 \
 -hide-scrollbar \
 -separator-style none \
 -bw 0 \
