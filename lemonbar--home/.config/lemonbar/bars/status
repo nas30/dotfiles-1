@@ -22,6 +22,25 @@ network(){
     echo "%{F$networkColor} ${network}"
 }
 
+media(){
+    mediaState=$(playerctl status)
+    mediaTitle=$(playerctl metadata title)
+    mediaArtist=$(playerctl metadata artist)
+
+    if [[ ${mediaState} == "Playing" && ${mediaArtist} != "" ]]; then
+        media="${mediaArtist} - ${mediaTitle}"
+        mediaColor=${foreground}
+    elif [[ ${mediaState} == "Playing" && ${mediaArtist} == "" ]]; then
+        media="Advertisement"
+        mediaColor=${red}
+    else
+        media="Not Playing"
+        mediaColor=${grey}
+    fi
+
+    echo "%{F${mediaColor}} ${media}"
+}
+
 # Fetch current dropbox sync status.
 dropbox(){
     dropboxInfo=$(dropbox-cli status)
@@ -37,10 +56,10 @@ dropbox(){
         dropboxColor=${green}
     else
         dropbox="Idle"
-        dropboxColor=${foreground}
+        dropboxColor=${grey}
     fi
 
-    echo "%{F$dropboxColor} ${dropbox}"
+    echo "%{F${dropboxColor}} ${dropbox}"
 }
 
 # Fetch current volume state and mute state.

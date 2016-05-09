@@ -32,8 +32,9 @@ localWallpapers=(~/.wallpaper/*)
 
 if [[ ! -e /tmp/wallpaper.jpg ]]; then
     cp $(printf "%s\n" "${localWallpapers[RANDOM % ${#localWallpapers[@]}]}") /tmp/wallpaper.jpg
-    feh --bg-fill /tmp/wallpaper.jpg
 fi
+
+feh --bg-fill /tmp/wallpaper.jpg
 
 # Set color-scheme-based wallpaper from the internet.
 #wallpaperColor=$(echo ${accent} | tr -d "#")

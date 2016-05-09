@@ -54,6 +54,7 @@ packages=(
 
     # Gaming Packages
     "steam"                             # You know, steam.
+    "discord-canary"                    # VoIP client.
 )
 
 # Array of stows to install.

@@ -42,7 +42,7 @@ Used for manipulating the clipboard. Really nice for storing image files like sc
 ---
 
 ## Window Management Packages
-##### Lazyness
+##### Laziness
 
 ---
 
@@ -62,19 +62,19 @@ I've been trying to learn Java. Having the development kit is necessary for that
 ---
 
 ## Internet Packages
-##### Lazyness
+##### Laziness
 
 ---
 
 ## Imaging Packages
-##### Lazyness
+##### Laziness
 
 ---
 
 ## Music Packages
-##### Lazyness
+##### Laziness
 
 ---
 
 ## Gaming Packages
-##### Lazyness
+##### Laziness
