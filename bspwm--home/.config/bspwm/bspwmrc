@@ -24,19 +24,21 @@ bspc config focused_border_color "${accent}"
 bspc config normal_border_color "${background}"
 bspc config presel_feedback_color "${accent}"
 
-# Program rules.
+# Program specific rules.
 bspc rule -a Steam state=floating follow=off
 
-# Set random wallpaper.
-#localWallpapers=(~/.wallpaper/*)
-#if [[ ! -e /tmp/bgnormal.jpg ]]; then
-#    feh --bg-fill $(printf "%s\n" "${localWallpapers[RANDOM % ${#localWallpapers[@]}]}")
-#fi
+# Set a random wallpaper from a local collection.
+localWallpapers=(~/.wallpaper/*)
 
-# Set wallpaper.
-wallpaperColor=$(echo ${accent} | tr -d "#")
-curl -o ~/.wallpaper/tiled/tweed.png "http://bg.siteorigin.com/image/generate/download?color=%23${wallpaperColor}&pattern=45degreee_fabric&blend=38&intensity=40.00&noise=0"
-feh --bg-tile ~/.wallpaper/tiled/tweed.png
+if [[ ! -e /tmp/wallpaper.jpg ]]; then
+    cp $(printf "%s\n" "${localWallpapers[RANDOM % ${#localWallpapers[@]}]}") /tmp/wallpaper.jpg
+    feh --bg-fill /tmp/wallpaper.jpg
+fi
+
+# Set color-scheme-based wallpaper from the internet.
+#wallpaperColor=$(echo ${accent} | tr -d "#")
+#curl -o ~/.wallpaper/tiled/tweed.png "http://bg.siteorigin.com/image/generate/download?color=%23${wallpaperColor}&pattern=45degreee_fabric&blend=38&intensity=40.00&noise=0"
+#feh --bg-tile ~/.wallpaper/tiled/tweed.png
 
 # Start background programs.
 compton --config ~/.config/compton/compton.conf -f &

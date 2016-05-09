@@ -100,7 +100,7 @@ battery(){
 
 # Fetch the current date.
 calendar(){
-    calendar=$(date "+%a, %b %d, %Y")
+    calendar=$(date "+%A, %b %d, %Y")
     echo "%{F$foreground} ${calendar}"
 }
 
@@ -129,5 +129,5 @@ status(){
 # Pipe functions to the bar infinitely.
 while true; do
 	echo "%{c}$(status)"
-done | lemonbar -g $((${panelWidth} - ($borderSize * 2)))x$((${panelHeight} - ($borderSize * 2)))+${panelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -r "${borderSize}" -R "${background}" -B "${background}" -F "${foreground}" -p -d  | \
+done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d | \
     while true; do read line; eval $line; done &

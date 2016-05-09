@@ -13,11 +13,14 @@ magenta=$(xrdb -query | grep -i color13 | tail -c 8)
 cyan=$(xrdb -query | grep -i color14 | tail -c 8)
 white=$(xrdb -query | grep -i color15 | tail -c 8)
 
-accent=${red}
+accent=${blue}
+
+# Set primary monitor name.
+primaryMonitor=HDMI-0
 
 # Screen resolution.
-screenWidth=$(xrandr | awk '/Screen 0/ {print $8}')
-screenHeight=$(xrandr | awk '/Screen 0/ {print $10}' | tr -d ",")
+screenWidth=$(dattr -w ${primaryMonitor})
+screenHeight=$(dattr -h ${primaryMonitor})
 
 # Fonts
 fontSize=10

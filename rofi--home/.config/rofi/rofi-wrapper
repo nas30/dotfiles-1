@@ -3,7 +3,7 @@
 # Import the universal config.
 . ~/.universal
 
-# Figure out how to make padding equal to "screenHeight / 2.25"
+# Figure out how to make padding calculated. It should be whatever screen height is left after subtracting rofi's size.
 
 rofi -show run \
 -opacity 95 \
@@ -17,4 +17,4 @@ rofi -show run \
 -padding 480 \
 -color-enabled \
 -color-window "${background}, ${foreground}, ${foreground}" \
--color-normal "${background}, ${foreground}, ${background}, ${foreground}, ${background}"
+-color-normal "${background}, ${foreground}, ${background}, ${background}, ${accent}"

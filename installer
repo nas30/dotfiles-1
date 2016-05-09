@@ -136,23 +136,29 @@ sudo pacman -Sy
 if [[ $(pacman -Qs pacaur) == "" ]]; then
     buildRoot="/tmp/buildroot"
 
+    # Prepare build directory.
     mkdir -p "${buildRoot}"
     cd "${buildRoot}" || exit 1
 
+    # Retrieve all source files.
     git clone "https://aur.archlinux.org/cower.git"
     git clone "https://aur.archlinux.org/pacaur.git"
-    git clone "https://github.com/dark-yux/bar.git"
+    git clone "git://arcetera.moe/disputils.git"
 
+    # Build cower, a dependency for pacaur.
     cd "${buildRoot}/cower" || exit 1
     makepkg --syncdeps --install --noconfirm
 
+    # Build pacaur, an AUR helper.
     cd "${buildRoot}/pacaur" || exit 1
     makepkg --syncdeps --install --noconfirm
 
-    cd "${buildRoot}/pacaur" || exit 1
+    # Build disputils, a display information utility.
+    cd "${buildRoot}/disputils" || exit 1
     make
-    sudo mv lemonbar /bin
+    sudo make install
 
+    # Clean up build directory.
     cd ~ || exit 1
     rm -rf "${buildRoot}"
 fi

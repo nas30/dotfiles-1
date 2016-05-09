@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Change field separator to return (new line) instead of space.
+IFS=$'\n'
+
+# Things to find for each monitor.
+for monitor in $(bspc query -M); do
+    # Get the resolution of the monitor.
+    width=$(dattr -w ${monitor})
+    height=$(dattr -h ${monitor})
+done
+
+# Set primary monitor.
+xrandr --output ${primaryMonitor} --auto --primary
