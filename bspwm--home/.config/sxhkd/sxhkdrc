@@ -63,3 +63,19 @@ XF86AudioLowerVolume
 # Toggle volume mute.
 XF86AudioMute
     ponymix toggle
+
+# Toggle play track / pause track.
+XF86AudioPlay
+    playerctl play-pause
+
+# Stop track.
+XF86AudioStop
+    playerctl stop
+
+# Previous track.
+XF86AudioPrev
+    playerctl previous
+
+# Next track.
+XF86AudioPrev
+    playerctl next

@@ -22,6 +22,7 @@ network(){
     echo "%{F$networkColor} ${network}"
 }
 
+# Fetch information from currently playing media.
 media(){
     mediaState=$(playerctl status)
     mediaTitle=$(playerctl metadata title)
@@ -75,6 +76,7 @@ volume(){
     	volumeIcon=""
     fi
 
+    # Change color of volume depending on mute status.
     if $(ponymix is-muted); then
     	volumeColor=${red}
     else
@@ -138,7 +140,6 @@ status(){
         if [[ ${i} -eq ${numberOfBlocks} ]]; then
             currentSeparator=""
         fi
-
         status+="$(${selectedBlocks[i]})${currentSeparator}"
     done
 
@@ -147,6 +148,6 @@ status(){
 
 # Pipe functions to the bar infinitely.
 while true; do
+    echo "%{c}$(status)"
     sleep ${sleepTime}
-	echo "%{c}$(status)"
 done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d

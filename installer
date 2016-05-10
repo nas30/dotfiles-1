@@ -33,11 +33,10 @@ packages=(
 
     # Programming Packages
     "jdk"                               # Oracle Java development kit.
+    "dfu-programmer"                    # Set keys on programmable keyboard.
 
     # Internet Packages
     "google-chrome-dev"                 # Web browser.
-    "emojione-color-font"               # Font to display emoji in firefox.
-    "qutebrowser"                       # Small web browser for encapsuling web apps.
     "dropbox"                           # Cloud storage.
     "dropbox-cli"                       # Terminal interface for dropbox.
 
@@ -59,6 +58,7 @@ packages=(
 
 # Array of stows to install.
 stows=(
+    # Home folder stows.
     "atom--home"
     "bin--home"
     "bspwm--home"
@@ -69,13 +69,14 @@ stows=(
     "misc--home"
     "neofetch--home"
     "pacaur--home"
-    "pacman--root"
-    "qutebrowser--home"
     "rofi--home"
     "urxvt--home"
     "wallpaper--home"
     "x--home"
     "zsh--home"
+
+    # Root folder stows.
+    "pacman--root"
 )
 
 # Ask for user password only once.
@@ -85,15 +86,15 @@ sudo -v
 sudo pacman -S --needed --noconfirm base-devel git stow
 
 # Remove old, conflicting files.
-sudo rm -rf /etc/pacman.conf
 rm -rf ~/bin
 rm -rf ~/.atom
 rm -rf ~/.config/bspwm
 rm -rf ~/.config/cava
 rm -rf ~/.config/compton
+rm -rf ~/.config/lemonbar
 rm -rf ~/.config/neofetch
 rm -rf ~/.config/pacaur
-rm -rf ~/.config/qutebrowser
+rm -rf ~/.config/rofi
 rm -rf ~/.config/sxhkd
 rm -rf ~/.fonts
 rm -rf ~/.universal
@@ -104,6 +105,8 @@ rm -rf ~/.Xresources
 rm -rf ~/.zlogin
 rm -rf ~/.zsh
 rm -rf ~/.zshrc
+
+sudo rm -rf /etc/pacman.conf
 
 # Install stowed files from array.
 for i in ${stows[@]}; do

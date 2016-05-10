@@ -6,7 +6,6 @@
 # Determine the status of each workspace using a loop. Focused is green, unfocused is white, empty is grey.
 desktops(){
     currentSeparator="${separator}"
-
     focusedDesktop=$(bspc query -D -d)
     lastDesktop=$(bspc query -D | tail -n1)
 
@@ -25,7 +24,7 @@ desktops(){
             currentSeparator=""
         fi
 
-        desktops+="%{F${color}}%{A:bspc desktop -f ${desktop}:}${desktop}%{A}${currentSeparator}"
+        desktops+="%{F${color}}${desktop}${currentSeparator}"
     done
 
     echo "${desktops}"
@@ -33,6 +32,6 @@ desktops(){
 
 # Pipe functions to the bar infinitely.
 while true; do
-    sleep ${sleepTime}
 	echo "%{c}$(desktops)"
+    sleep ${sleepTime}
 done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${bottomPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d
