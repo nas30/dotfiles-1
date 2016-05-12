@@ -132,22 +132,24 @@ clock(){
 }
 
 # Format selected blocks for piping into bar.
-status(){
-    currentSeparator="${separator}"
+formatBar(){
     numberOfBlocks=$((${#selectedBlocks[@]} - 1))
 
     for ((i=0; i<=${numberOfBlocks}; i++)); do
         if [[ ${i} -eq ${numberOfBlocks} ]]; then
             currentSeparator=""
+        else
+            currentSeparator="${separator}"
         fi
-        status+="$(${selectedBlocks[i]})${currentSeparator}"
+
+        formatBar+="$(${selectedBlocks[i]})${currentSeparator}"
     done
 
-    echo "${status}"
+    echo "${formatBar}"
 }
 
 # Pipe functions to the bar infinitely.
 while true; do
-    echo "%{c}$(status)"
+    echo "%{c}$(formatBar)"
     sleep ${sleepTime}
-done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d
+done | lemonbar -g ${panelWidth}x${panelHeight}+${rightPanelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d

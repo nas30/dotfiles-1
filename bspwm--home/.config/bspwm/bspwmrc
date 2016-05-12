@@ -16,7 +16,7 @@ done
 bspc config top_padding $((${gapSize} * 3))
 bspc config left_padding 0
 bspc config right_padding 0
-bspc config bottom_padding $((${gapSize} * 3))
+bspc config bottom_padding 0
 bspc config split_ratio 0.50
 
 # Colors.
@@ -36,11 +36,6 @@ fi
 
 feh --bg-fill /tmp/wallpaper.jpg
 
-# Set color-scheme-based wallpaper from the internet.
-#wallpaperColor=$(echo ${accent} | tr -d "#")
-#curl -o ~/.wallpaper/tiled/tweed.png "http://bg.siteorigin.com/image/generate/download?color=%23${wallpaperColor}&pattern=45degreee_fabric&blend=38&intensity=40.00&noise=0"
-#feh --bg-tile ~/.wallpaper/tiled/tweed.png
-
 # Start background programs.
 compton --config ~/.config/compton/compton.conf -f &
 dropbox &
@@ -51,4 +46,4 @@ dropbox &
 
 # Start lemonbar panels.
 ~/.config/lemonbar/bars/status &
-~/.config/lemonbar/bars/desktops &
+~/.config/lemonbar/bars/desktops

@@ -32,6 +32,6 @@ desktops(){
 
 # Pipe functions to the bar infinitely.
 while true; do
-	echo "%{c}$(desktops)"
+    echo "%{c}$(desktops)"
     sleep ${sleepTime}
-done | lemonbar -g ${panelWidth}x${panelHeight}+${panelX}+${bottomPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d
+done | lemonbar -g ${panelWidth}x${panelHeight}+${leftPanelX}+${topPanelY} -f "${font}-${fontSize}" -f "${iconFont}" -B "${background}" -p -d

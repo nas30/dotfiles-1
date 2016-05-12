@@ -1,2 +1,3 @@
 #include ".xres/schemes/eclectic"
 #include ".xres/urxvt"
+#include ".xres/xft"
