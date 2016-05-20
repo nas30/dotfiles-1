@@ -32,7 +32,8 @@ packages=(
     "gvfs"                              # Used by atom to delete files.
 
     # Programming Packages
-    "jdk"                               # Oracle Java development kit.
+    "jdk8-openjdk-infinality"           # Java development kit with infinality support.
+    "intellij-idea-ce-eap"              # Java IDE -- early access package.
     "dfu-programmer"                    # Set keys on programmable keyboard.
 
     # Internet Packages
@@ -176,6 +177,10 @@ done
 
 # Change user shell.
 sudo chsh -s /bin/zsh $(whoami)
+
+# Set java version.
+sudo archlinux-java set java-8-openjdk
+sudo archlinux-java get
 
 # Remove any orphanated packages.
 sudo pacman -Rns $(pacman -Qtdq)

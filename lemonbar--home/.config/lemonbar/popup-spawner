@@ -47,7 +47,7 @@ popupWidth=$((${stringWidth} * 2))
 
 # Get static dimensions based on the bar panels.
 popupHeight=${panelHeight}
-popupX=${panelX}
+popupX=${leftPanelX}
 popupY=$((${panelHeight} * 2))
 
 # Create a popup from whatever information is piped into this script.

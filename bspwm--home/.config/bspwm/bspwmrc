@@ -28,13 +28,13 @@ bspc config presel_feedback_color "${accent}"
 bspc rule -a Steam state=floating follow=off
 
 # Set a random wallpaper from a local collection.
-localWallpapers=(~/.wallpaper/*)
+#localWallpapers=(~/.wallpaper/*)
+#if [[ ! -e /tmp/wallpaper.jpg ]]; then
+#    cp $(printf "%s\n" "${localWallpapers[RANDOM % ${#localWallpapers[@]}]}") /tmp/wallpaper.jpg
+#fi
+#feh --bg-fill /tmp/wallpaper.jpg
 
-if [[ ! -e /tmp/wallpaper.jpg ]]; then
-    cp $(printf "%s\n" "${localWallpapers[RANDOM % ${#localWallpapers[@]}]}") /tmp/wallpaper.jpg
-fi
-
-feh --bg-fill /tmp/wallpaper.jpg
+feh --bg-fill ~/.wallpaper/wallpaper.png
 
 # Start background programs.
 compton --config ~/.config/compton/compton.conf -f &
